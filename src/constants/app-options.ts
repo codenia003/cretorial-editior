@@ -40,6 +40,10 @@ export const BASE_ITEMS = [
     name: "Logomaker",
   },
   {
+    id: "slogan",
+    name: "Slogan",
+  },
+  {
     id: "layers",
     name: "Layers",
   },

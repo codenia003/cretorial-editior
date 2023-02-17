@@ -79,8 +79,38 @@ const Logomaker = () => {
         { "id": 15, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_15_MS.png", "color": "blue", "family": "italic" },
         { "id": 16, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_16_MS.png", "color": "red", "family": "normal" },
         { "id": 17, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_17_MS.png", "color": "orange", "family": "italic" },
+        { "id": 18, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_1_MS.png", "color": "red", "family": "italic" },
+        { "id": 19, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_2_MS.png", "color": "green", "family": "normal" },
+        { "id": 20, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_3_MS.png", "color": "blue", "family": "italic" },
+        { "id": 21, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_4_MS.png", "color": "orange", "family": "normal" },
+        { "id": 22, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_5_MS.png", "color": "red", "family": "italic" },
+        { "id": 23, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_6_MS.png", "color": "green", "family": "normal" },
+        { "id": 24, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_7_MS.png", "color": "blue", "family": "italic" },
+        { "id": 25, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_8_MS.png", "color": "orange", "family": "normal" },
+        { "id": 26, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_9_MS.png", "color": "red", "family": "italic" },
+        { "id": 27, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_10_MS.png", "color": "green", "family": "normal" },
+        { "id": 28, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_11_MS.png", "color": "orange", "family": "italic" },
+        { "id": 29, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_12_MS.png", "color": "blue", "family": "normal" },
+        { "id": 30, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_13_MS.png", "color": "red", "family": "italic" },
+        { "id": 31, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_14_MS.png", "color": "orange", "family": "normal" },
+        { "id": 32, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_15_MS.png", "color": "blue", "family": "italic" },
+        { "id": 33, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_16_MS.png", "color": "red", "family": "normal" },
+        { "id": 34, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_17_MS.png", "color": "orange", "family": "italic" },
+        { "id": 34, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_18_MS.png", "color": "blue", "family": "italic" },
+        { "id": 35, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_19_MS.png", "color": "red", "family": "normal" },
+        { "id": 36, "src": "https://cretorial.ai/cretorial/api/images/PNG2/FoodLogo_20_MS.png", "color": "orange", "family": "italic" },
+        { "id": 37, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_1_MS.png", "color": "blue", "family": "normal" },
+        { "id": 38, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_2_MS.png", "color": "red", "family": "italic" },
+        { "id": 39, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_3_MS.png", "color": "orange", "family": "normal" },
+        { "id": 40, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_4_MS.png", "color": "blue", "family": "italic" },
+        { "id": 41, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_5_MS.png", "color": "red", "family": "normal" },
+        { "id": 42, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_6_MS.png", "color": "orange", "family": "italic" },
+        { "id": 43, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_7_MS.png", "color": "blue", "family": "italic" },
+        { "id": 44, "src": "https://cretorial.ai/cretorial/api/images/PNG3/TravelLogo_8_MS.png", "color": "red", "family": "normal" },
+        { "id": 45, "src": "https://cretorial.ai/cretorial/api/images/PNG4/BeautyLogo_1_MS.png", "color": "red", "family": "italic" }
 
       ];
+
       setImages(all);
 
     },
