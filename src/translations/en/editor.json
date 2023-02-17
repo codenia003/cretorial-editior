@@ -1,0 +1,18 @@
+{
+    "panels": {
+        "panelsList": {
+            "templates": "Templates",
+            "customize": "Customize",
+            "elements": "Elements",
+            "unsplash": "Unsplash",
+            "videos": "Videos",
+            "uploads": "Uploads",
+            "text": "Text",
+            "stickers": "Stickers",
+            "pixabay": "Pixabay",
+            "pexels": "Pexels",
+            "logomaker": "Logo Maker",
+            "layers": "Layers"
+        }
+    }
+}
