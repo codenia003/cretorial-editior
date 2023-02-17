@@ -5,6 +5,7 @@ import FontSelector from "./FontSelector"
 import Pixabay from "./Pixabay"
 import Pexels from "./Pexels"
 import Logomaker from "./Logomaker"
+import Slogan from "./Slogan"
 import Templates from "./Templates"
 import Uploads from "./Uploads"
 import Unsplash from "./Unsplash"
@@ -24,6 +25,7 @@ export default {
   Pixabay: Pixabay,
   Pexels: Pexels,
   Logomaker: Logomaker,
+  Slogan: Slogan,
   Templates: Templates,
   Uploads: Uploads,
   Unsplash: Unsplash,
