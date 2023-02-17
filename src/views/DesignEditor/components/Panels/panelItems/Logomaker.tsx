@@ -13,8 +13,10 @@ import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import { useStyletron } from "baseui"
 import "../../../../../styles/styles.css";
-import { useScreenshot } from 'use-react-screenshot'
-
+import { useScreenshot, createFileName } from 'use-react-screenshot'
+import useDynamicRefs from 'use-dynamic-refs';
+import html2canvas from "html2canvas"
+import * as htmlToImage from 'html-to-image';
 
 
 const Logomaker = () => {
@@ -25,15 +27,29 @@ const Logomaker = () => {
   const [isloading, setIsloading] = React.useState(true)
   const [category, setCategory] = useState<string>("")
   const setIsSidebarOpen = useSetIsSidebarOpen()
+  const [getRef, setRef] = useDynamicRefs();
 
-  const ref = createRef();
   const [img, takeScreenShot] = useScreenshot();
 
+  const exportAsImage = async (element: any, imageFileName: any) => {
+    html2canvas(element, { allowTaint: true, useCORS: true, backgroundColor: null })
+      .then(function (canvas) {
+        let image = canvas.toDataURL("image/png", 1);
+
+        const a = document.createElement("a");
+        a.href = image;
+        a.download = createFileName("png", "donwload");
+        a.click();
+      })
+      .catch((e) => {
+
+        console.log(e);
+      });
+  };
+
   const addObject = React.useCallback(
-    (refs: any) => {
-
-      takeScreenShot(ref.current);
-
+    (id: any) => {
+      exportAsImage(getRef(id).current, "test");
     },
     [editor]
   )
@@ -46,50 +62,27 @@ const Logomaker = () => {
     async (reset?: boolean) => {
 
       const all: any = [
-        { "id": 1, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_1_MS.png", "ref": createRef() },
-        { "id": 2, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_2_MS.png", "ref": createRef() },
-        { "id": 3, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_3_MS.png", "ref": createRef() },
-        { "id": 4, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_4_MS.png", "ref": createRef() },
-        { "id": 5, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_5_MS.png", "ref": createRef() },
-        { "id": 6, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_6_MS.png", "ref": createRef() },
-        { "id": 7, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_7_MS.png", "ref": createRef() },
-        { "id": 8, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_8_MS.png", "ref": createRef() },
-        { "id": 9, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_9_MS.png", "ref": createRef() },
-        { "id": 10, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_10_MS.png", "ref": createRef() },
-        { "id": 11, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_11_MS.png", "ref": createRef() },
-        { "id": 12, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_12_MS.png", "ref": createRef() },
-        { "id": 13, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_13_MS.png", "ref": createRef() },
-        { "id": 14, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_14_MS.png", "ref": createRef() },
-        { "id": 15, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_15_MS.png", "ref": createRef() },
-        { "id": 16, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_16_MS.png", "ref": createRef() },
-        { "id": 17, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_17_MS.png", "ref": createRef() },
+        { "id": 1, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_1_MS.png", "color": "red", "family": "italic" },
+        { "id": 2, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_2_MS.png", "color": "green", "family": "normal" },
+        { "id": 3, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_3_MS.png", "color": "blue", "family": "italic" },
+        { "id": 4, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_4_MS.png", "color": "orange", "family": "normal" },
+        { "id": 5, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_5_MS.png", "color": "red", "family": "italic" },
+        { "id": 6, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_6_MS.png", "color": "green", "family": "normal" },
+        { "id": 7, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_7_MS.png", "color": "blue", "family": "italic" },
+        { "id": 8, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_8_MS.png", "color": "orange", "family": "normal" },
+        { "id": 9, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_9_MS.png", "color": "red", "family": "italic" },
+        { "id": 10, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_10_MS.png", "color": "green", "family": "normal" },
+        { "id": 11, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_11_MS.png", "color": "orange", "family": "italic" },
+        { "id": 12, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_12_MS.png", "color": "blue", "family": "normal" },
+        { "id": 13, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_13_MS.png", "color": "red", "family": "italic" },
+        { "id": 14, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_14_MS.png", "color": "orange", "family": "normal" },
+        { "id": 15, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_15_MS.png", "color": "blue", "family": "italic" },
+        { "id": 16, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_16_MS.png", "color": "red", "family": "normal" },
+        { "id": 17, "src": "https://cretorial.ai/cretorial/api/images/PNG/Logo_17_MS.png", "color": "orange", "family": "italic" },
 
       ];
       setImages(all);
-      //setIsloading(false);
-      /*setIsloading(true)
 
-      const newImages = await api.getLogoMakerImages({
-        query: category || "nature",
-        perPage: 12,
-        page: pageNumber,
-      })
-
-      if (newImages.length === 0) {
-        setHasMore(false)
-        setIsloading(false)
-        return
-      }
-
-      let all = [...images, ...newImages]
-      // Set only new images if reset = true. It should be useful for new queries
-      if (reset) {
-        all = newImages
-      }
-      // @ts-ignore
-      setImages(all)
-      setPageNumber(pageNumber + 1)*/
-      //setIsloading(false)*/
     },
     [pageNumber, hasMore, category, images]
   )
@@ -144,7 +137,7 @@ const Logomaker = () => {
       <Scrollable>
         <Block padding={"0 1.5rem"}>
 
-          {/* <img src={img} alt={'Screenshot'} /> */}
+
 
           <Block
             style={{
@@ -158,7 +151,7 @@ const Logomaker = () => {
               return (
                 <>
 
-                  <div className="logomaker" ref={ref}><GraphicItem ref={image["ref"]} onClick={() => addObject(image["ref"])} key={index} preview={image["src"]} category={category} /></div>
+                  <div className="logomaker" ref={setRef(image["id"])} ><GraphicItem onClick={() => addObject(image["id"])} key={index} preview={image["src"]} category={category} color={image["color"]} family={image["family"]} /></div>
                 </>
               )
             })}
@@ -181,70 +174,39 @@ const Logomaker = () => {
 
 
 
-const GraphicItem = ({ preview, category, onClick, ref }: { preview: any; category: any, ref: any, onClick?: (option: any) => void }) => {
+const GraphicItem = ({ preview, category, onClick, color, family }: { preview: any; category: any, color: any, family: any, onClick?: (option: any) => void }) => {
   const [css] = useStyletron()
   return (
     <div
       onClick={onClick}
-      ref={ref}
+
       // onClick={() => onClick(component.layers[0])}
       className={css({
-        position: "relative",
-        height: "84px",
-        background: "#f8f8fb",
+        //position: "relative",
+        //height: "84px",
+        //background: "#f8f8fb",
         cursor: "pointer",
-        padding: "30px",
-        borderRadius: "8px",
+        padding: "16px",
+        //borderRadius: "8px",
         overflow: "hidden",
         "::before:hover": {
           opacity: 1,
         },
       })}
     >
-      <div
-        className={css({
-          backgroundImage: `linear-gradient(to bottom,
-          rgba(0, 0, 0, 0) 0,
-          rgba(0, 0, 0, 0.006) 8.1%,
-          rgba(0, 0, 0, 0.022) 15.5%,
-          rgba(0, 0, 0, 0.047) 22.5%,
-          rgba(0, 0, 0, 0.079) 29%,
-          rgba(0, 0, 0, 0.117) 35.3%,
-          rgba(0, 0, 0, 0.158) 41.2%,
-          rgba(0, 0, 0, 0.203) 47.1%,
-          rgba(0, 0, 0, 0.247) 52.9%,
-          rgba(0, 0, 0, 0.292) 58.8%,
-          rgba(0, 0, 0, 0.333) 64.7%,
-          rgba(0, 0, 0, 0.371) 71%,
-          rgba(0, 0, 0, 0.403) 77.5%,
-          rgba(0, 0, 0, 0.428) 84.5%,
-          rgba(0, 0, 0, 0.444) 91.9%,
-          rgba(0, 0, 0, 0.45) 100%)`,
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          opacity: 0,
-          transition: "opacity 0.3s ease-in-out",
-          height: "100%",
-          width: "100%",
-          ":hover": {
-            opacity: 1,
-          },
-        })}
-      />
+
       <img
         src={preview}
+        //src="https://images.pexels.com/photos/15436366/pexels-photo-15436366.jpeg?auto=compress&cs=tinysrgb&h=350"
         className={css({
           width: "100%",
-          height: "100%",
+          //height: "100%",
           objectFit: "contain",
           pointerEvents: "none",
           verticalAlign: "middle",
         })}
       />
-      <div style={{ textAlign: "center" }}>{category}</div>
+      <div style={{ textAlign: "center", 'color': color, 'fontStyle': family, 'fontSize': '18px' }}>{category}</div>
     </div>
   )
 }

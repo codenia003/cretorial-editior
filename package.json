@@ -43,7 +43,8 @@
     "styletron-react": "6.1.0-beta.2",
     "use-debounce": "^8.0.4",
     "use-latest": "^1.2.1",
-    "use-react-screenshot": "^3.0.0"
+    "use-react-screenshot": "^3.0.0",
+    "use-dynamic-refs": "^1.0.0"
   },
   "devDependencies": {
     "@layerhub-io/types": "^0.3.0",
