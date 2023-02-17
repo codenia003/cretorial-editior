@@ -9,7 +9,7 @@ function Logo({ size }: { size: number }) {
     //     fill="currentColor"
     //   />
     // </svg>
-    <><img src={logo} style={{ maxWidth:"100%",height:"40px"}}/></>
+    <><img src="https://cretorial.ai/cretorial/images/logo.svg" style={{ maxWidth:"100%",height:"40px"}}/></>
   )
 }
 

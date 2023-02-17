@@ -345,13 +345,13 @@ class ApiService {
     })
   }
 
-  getPixabayImages = (props: { query: string; perPage: number; page: number }): Promise<Resource[]> => {
+  getPixabayImages = (text:any): Promise<Resource[]> => {
    
     return new Promise(async (resolve, reject) => {
       
       try {
        
-        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php`, {
+        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=10&type=search`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'
@@ -367,10 +367,10 @@ class ApiService {
       }
     })
   }
-  getPexelsImages = (props: { query: string; perPage: number; page: number }): Promise<Resource[]> => {
+  getPexelsImages = (text:any): Promise<Resource[]> => {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/pexels.php`, {
+        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=10&type=search`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'

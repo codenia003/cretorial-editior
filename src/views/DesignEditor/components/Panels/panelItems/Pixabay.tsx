@@ -39,11 +39,7 @@ const Pixabay = () => {
     async (reset?: boolean) => {
       setIsloading(true)
 
-      const newImages = await api.getPixabayImages({
-        query: category || "nature",
-        perPage: 12,
-        page: pageNumber,
-      })
+      const newImages = await api.getPixabayImages(category);
 
       if (newImages.length === 0) {
         setHasMore(false)

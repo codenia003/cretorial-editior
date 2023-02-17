@@ -39,11 +39,7 @@ const Pexels = () => {
     async (reset?: boolean) => {
       setIsloading(true)
 
-      const newImages = await api.getPexelsImages({
-        query: category || "nature",
-        perPage: 12,
-        page: pageNumber,
-      })
+      const newImages = await api.getPexelsImages(category)
 
       if (newImages.length === 0) {
         setHasMore(false)
