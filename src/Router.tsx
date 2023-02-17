@@ -5,7 +5,7 @@ import Dashboard from "~/views/Dashboard"
 const Router = () => {
   return (
     // <BrowserRouter basename={'/editor'}>
-    <BrowserRouter basename={'/editor'}>
+    <BrowserRouter>
       <Routes>
         <Route path="/manage" element={<Dashboard />} />
         <Route path="/" element={<DesignEditor />} />
