@@ -267,7 +267,7 @@ const Navbar = () => {
   return (
     // @ts-ignore
     <ThemeProvider theme={DarkTheme}>
-      <Container>
+      <Container style={{background:"linear-gradient(90deg, #3A35CB 0%, #9277FF 100%)"}}>
         <div style={{ color: "#ffffff" }}>
           <Logo size={36} />
         </div>
