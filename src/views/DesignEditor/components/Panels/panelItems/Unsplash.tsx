@@ -8,6 +8,8 @@ import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import api from "~/services/api"
 import Spinner from "baseui/icon/spinner"
+import Search from "~/components/Icons/Search"
+import { Input } from "baseui/input"
 
 const Unsplash = () => {
   const editor = useEditor()
@@ -35,6 +37,11 @@ const Unsplash = () => {
     setImages(unsplash);
     setSpinner(false);
   }
+  const getSearchData = (event: any) => {
+     if (event.key === "Enter") {
+       //alert(event.target.value)
+     }
+   }
 
   useEffect(() => {
     _getUnsplash();
@@ -56,6 +63,21 @@ const Unsplash = () => {
         <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />
         </Block>
+      </Block>
+      <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+        <Input
+          overrides={{
+            Root: {
+              style: {
+                paddingLeft: "8px",
+              },
+            },
+          }}
+          onKeyDown={getSearchData}
+          placeholder="Search"
+          size={"compact"}
+          startEnhancer={<Search size={16} />}
+        />
       </Block>
       <Scrollable>
         <Block padding="0 1.5rem">
