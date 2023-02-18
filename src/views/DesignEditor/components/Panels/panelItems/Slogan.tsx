@@ -3,7 +3,7 @@ import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
 import { FormControl } from "baseui/form-control";
 import { Textarea } from "baseui/textarea";
-import { Select } from "baseui/select";
+import { Select, Value } from "baseui/select";
 import Scrollable from "~/components/Scrollable"
 import InfiniteScrolling from "~/components/InfiniteScrolling"
 import { IStaticImage } from "@layerhub-io/types"
@@ -17,7 +17,30 @@ import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import { useStyletron } from "baseui"
 import "../../../../../styles/styles.css";
 
+import {Alert} from 'baseui/icon';
+import {Button} from 'baseui/button';
+import {
+  Card,
+  StyledBody,
+  StyledAction
+} from "baseui/card";
 
+
+function Negative() {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: theme.sizing.scale500,
+        color: theme.colors.negative400,
+      })}
+    >
+      <Alert size="18px" />
+    </div>
+  );
+}
 
 const Slogan = () => {
   const editor = useEditor()
@@ -27,9 +50,24 @@ const Slogan = () => {
   const [isloading, setIsloading] = React.useState(true)
   const [category, setCategory] = useState<string>("")
   const setIsSidebarOpen = useSetIsSidebarOpen()
-  const [value, setValue] = React.useState("Hello");
-  const [selectValue, setSelectValue] = React.useState([]);
+  const [value, setValue] = React.useState("");
+  const [selectValue, setSelectValue] = React.useState<Value>([]);
+  const [isSubmitting, setIsLoading] = useState(false);
 
+  const [searchData, setsearchData] = useState<any>(null);
+  const [postData, setData] = useState({
+    userid: "",
+    similar: "",
+    keyword: "",
+    topic: "",
+    title: "",
+    product: "",
+    brand: "",
+    words: "",
+    desc: "",
+    count: "",
+    tone: "professional",
+  });
 
   useEffect(() => {
 
@@ -37,12 +75,27 @@ const Slogan = () => {
 
   const fetchData = React.useCallback(
     async (reset?: boolean) => {
-
-
-
     },
     [pageNumber, hasMore, category, images]
   )
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setsearchData(null);
+    postData.desc = value;
+    postData.tone = selectValue[0].id as string;
+    const searchData = postData;
+    console.log(searchData);
+    const data = await api.contentPost('sloganskykeywords', { searchData });
+    const res = data?.map(function (val: any) {
+      return val;
+    }).join("\r\n");
+    setsearchData(res);
+    setIsLoading(false);
+
+    // console.log(res);
+  };
 
   const makeSearch = () => {
     setImages([])
@@ -69,67 +122,63 @@ const Slogan = () => {
       </Block>
 
       <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
-        {/* <Input
-          overrides={{
-            Root: {
-              style: {
-                paddingLeft: "8px",
-              },
-            },
-          }}
-          onKeyDown={(key) => key.code === "Enter" && makeSearch()}
-          onBlur={makeSearch}
-          value={category}
-          onChange={(e) => {
-
-            setImages([]);
-            setPageNumber(1);
-            setCategory(e.target.value)
-          }}
-          placeholder="Slogan"
-          size={"compact"}
-          startEnhancer={<Search size={16} />}
-        /> */}
+        <form onSubmit={handleSubmit}>
          <FormControl label={() => "What do you want a slogan on?"}>
             <Textarea
               value={value}
               onChange={e => setValue(e.target.value)}
               placeholder="eg. Slogans for a women's apparel brand that deals in high-end styles."
-              clearOnEscape
+              required
             />
          </FormControl>
 
          <FormControl label={() => "Tone"}>
           <Select
             options={[
-              { label: "AliceBlue", id: "#F0F8FF" },
-              { label: "AntiqueWhite", id: "#FAEBD7" },
-              { label: "Aqua", id: "#00FFFF" },
-              { label: "Aquamarine", id: "#7FFFD4" },
-              { label: "Azure", id: "#F0FFFF" },
-              { label: "Beige", id: "#F5F5DC" }
+              { label: "Professional", id: "professional" },
+              { label: "Excited", id: "excited" },
+              { label: "Encouraging", id: "encouraging" },
+              { label: "Funny", id: "funny" },
+              { label: "Dramatic", id: "dramatic" },
+              { label: "Sarcastic", id: "sarcastic" },
+              { label: "Engaging", id: "engaging" },
+              { label: "Creative", id: "creative" },
+              { label: "Persusasive", id: "persusasive" },
+              { label: "Thoughtful", id: "thoughtful" },
+              { label: "Persuasive", id: "persuasive" }
             ]}
             value={selectValue}
-            placeholder="Select color"
-            onChange={e => setSelectValue(e.value)}
+            placeholder="Select Tone"
+            onChange={({value}) => setSelectValue(value)}
+            required
             />
           </FormControl>
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ?
+            <Spinner $size={SIZE.small} />
+            : 'Create'}
+          </Button>
+        </form>
       </Block>
       <Scrollable>
         <Block padding={"0 1.5rem"}>
-
-
-
           <Block
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "0.5rem",
+            $style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingY: "2rem",
             }}
           >
-
+            {searchData === null ? (
+              ""
+            ) : (
+              <Card>
+                <StyledBody>
+                 {searchData}
+                </StyledBody>
+              </Card>
+            )}
             {/* <div className="logomaker" >Slogan</div> */}
-
           </Block>
           <Block
             $style={{

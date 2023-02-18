@@ -214,6 +214,7 @@ class ApiService {
       }
     })
   }
+  
   getUnsplash(): Promise<any> {
 
     return new Promise(async (resolve, reject) => {
@@ -401,6 +402,24 @@ class ApiService {
     })
   }
 
+  contentPost = (postName:any, {searchData}: any): Promise<Resource[]> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(`https://casaahaanahotels.com/` + `${postName}`, {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: JSON.stringify(searchData),
+        });
+        const data = await response.json();
+        resolve(data.result)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
 }
 
 export default new ApiService()
