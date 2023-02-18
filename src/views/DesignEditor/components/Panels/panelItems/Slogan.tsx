@@ -1,6 +1,9 @@
 import React, { createRef, useState, useEffect } from "react"
 import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
+import { FormControl } from "baseui/form-control";
+import { Textarea } from "baseui/textarea";
+import { Select } from "baseui/select";
 import Scrollable from "~/components/Scrollable"
 import InfiniteScrolling from "~/components/InfiniteScrolling"
 import { IStaticImage } from "@layerhub-io/types"
@@ -24,6 +27,8 @@ const Slogan = () => {
   const [isloading, setIsloading] = React.useState(true)
   const [category, setCategory] = useState<string>("")
   const setIsSidebarOpen = useSetIsSidebarOpen()
+  const [value, setValue] = React.useState("Hello");
+  const [selectValue, setSelectValue] = React.useState([]);
 
 
   useEffect(() => {
@@ -64,7 +69,7 @@ const Slogan = () => {
       </Block>
 
       <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
-        <Input
+        {/* <Input
           overrides={{
             Root: {
               style: {
@@ -84,7 +89,31 @@ const Slogan = () => {
           placeholder="Slogan"
           size={"compact"}
           startEnhancer={<Search size={16} />}
-        />
+        /> */}
+         <FormControl label={() => "What do you want a slogan on?"}>
+            <Textarea
+              value={value}
+              onChange={e => setValue(e.target.value)}
+              placeholder="eg. Slogans for a women's apparel brand that deals in high-end styles."
+              clearOnEscape
+            />
+         </FormControl>
+
+         <FormControl label={() => "Tone"}>
+          <Select
+            options={[
+              { label: "AliceBlue", id: "#F0F8FF" },
+              { label: "AntiqueWhite", id: "#FAEBD7" },
+              { label: "Aqua", id: "#00FFFF" },
+              { label: "Aquamarine", id: "#7FFFD4" },
+              { label: "Azure", id: "#F0FFFF" },
+              { label: "Beige", id: "#F5F5DC" }
+            ]}
+            value={selectValue}
+            placeholder="Select color"
+            onChange={e => setSelectValue(e.value)}
+            />
+          </FormControl>
       </Block>
       <Scrollable>
         <Block padding={"0 1.5rem"}>
@@ -99,7 +128,7 @@ const Slogan = () => {
             }}
           >
 
-            <div className="logomaker" >Slogan</div>
+            {/* <div className="logomaker" >Slogan</div> */}
 
           </Block>
           <Block
