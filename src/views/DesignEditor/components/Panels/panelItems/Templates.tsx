@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
 import { loadTemplateFonts } from "~/utils/fonts"
@@ -14,6 +14,10 @@ import { IScene } from "@layerhub-io/types"
 import { nanoid } from "nanoid"
 import api from "~/services/api"
 import useEditorType from "~/hooks/useEditorType"
+import Search from "baseui/icon/search"
+import { createAsyncThunk, createAction } from "@reduxjs/toolkit"
+import { SIZE, Spinner } from "baseui/spinner"
+import { Input } from "baseui/input"
 
 export default function () {
   const editor = useEditor()
@@ -21,6 +25,9 @@ export default function () {
   const { setCurrentScene, currentScene, setScenes, setCurrentDesign } = useDesignEditorContext()
   const designs = useSelector(selectPublicDesigns)
   const editorType = useEditorType()
+  const [category, setCategory] = useState<string>("")
+  const [isloading, setIsloading] = React.useState(true)
+  const [images, setImages] = useState<IDesign[]>([])
 
   const loadGraphicTemplate = async (payload: IDesign): Promise<{ scenes: IScene[]; design: IDesign }> => {
     const scenes: IScene[] = []
@@ -69,6 +76,25 @@ export default function () {
     },
     [editor]
   )
+  //alert(JSON.stringify(designs));
+  const fetchData = async () => {
+
+    const newImages = await api.getPublicDesigns(category)
+    setImages(newImages)
+    setIsloading(false)
+  }
+  const makeSearch = () => {
+    setImages([])
+    setIsloading(true)
+    fetchData();
+
+  }
+  useEffect(() => {
+    if (isloading) {
+      fetchData();
+    }
+  }, [isloading]);
+
 
   return (
     <Block $style={{ flex: 1, display: "flex", flexDirection: "column" }}>
@@ -78,7 +104,7 @@ export default function () {
           alignItems: "center",
           fontWeight: 500,
           justifyContent: "space-between",
-          padding: "1.5rem",
+          padding: "1.5rem 1.5rem 0",
         }}
       >
         <Block>Templates</Block>
@@ -87,10 +113,38 @@ export default function () {
           <AngleDoubleLeft size={18} />
         </Block>
       </Block>
+
+      <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+        <Input
+          overrides={{
+            Root: {
+              style: {
+                paddingLeft: "8px",
+              },
+            },
+          }}
+          onKeyDown={(key) => key.code === "Enter" && makeSearch()}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          placeholder="Search"
+          size={"compact"}
+          startEnhancer={<Search size={16} />}
+        />
+      </Block>
       <Scrollable>
+        <Block
+          $style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingY: "2rem",
+          }}
+        >
+          {isloading && <Spinner $size={SIZE.small} />}
+        </Block>
         <div style={{ padding: "0 1.5rem" }}>
           <div style={{ display: "grid", gap: "0.5rem", gridTemplateColumns: "1fr 1fr" }}>
-            {designs
+
+            {images
               .filter((d) => d.type === editorType)
               .map((design, index) => {
                 return (
@@ -173,3 +227,7 @@ function ImageItem({ preview, onClick }: { preview: any; onClick?: (option: any)
     </div>
   )
 }
+function dispatch(arg0: { payload: IDesign[]; type: string }) {
+  throw new Error("Function not implemented.")
+}
+

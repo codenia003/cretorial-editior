@@ -16,9 +16,10 @@ import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import { useStyletron } from "baseui"
 import "../../../../../styles/styles.css";
+import copy_text from '../../../../../images/copy.svg';
 
-import {Alert} from 'baseui/icon';
-import {Button} from 'baseui/button';
+import { Alert } from 'baseui/icon';
+import { Button } from 'baseui/button';
 import {
   Card,
   StyledBody,
@@ -35,6 +36,7 @@ function Negative() {
         alignItems: 'center',
         paddingRight: theme.sizing.scale500,
         color: theme.colors.negative400,
+
       })}
     >
       <Alert size="18px" />
@@ -112,6 +114,7 @@ const Slogan = () => {
           fontWeight: 500,
           justifyContent: "space-between",
           padding: "1.5rem 1.5rem 0",
+
         }}
       >
         <Block>Slogan</Block>
@@ -123,40 +126,49 @@ const Slogan = () => {
 
       <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
         <form onSubmit={handleSubmit}>
-         <FormControl label={() => "What do you want a slogan on?"}>
+          <FormControl label={() => "What do you want a slogan on?"}>
             <Textarea
               value={value}
               onChange={e => setValue(e.target.value)}
               placeholder="eg. Slogans for a women's apparel brand that deals in high-end styles."
+
               required
             />
-         </FormControl>
+          </FormControl>
 
-         <FormControl label={() => "Tone"}>
-          <Select
-            options={[
-              { label: "Professional", id: "professional" },
-              { label: "Excited", id: "excited" },
-              { label: "Encouraging", id: "encouraging" },
-              { label: "Funny", id: "funny" },
-              { label: "Dramatic", id: "dramatic" },
-              { label: "Sarcastic", id: "sarcastic" },
-              { label: "Engaging", id: "engaging" },
-              { label: "Creative", id: "creative" },
-              { label: "Persusasive", id: "persusasive" },
-              { label: "Thoughtful", id: "thoughtful" },
-              { label: "Persuasive", id: "persuasive" }
-            ]}
-            value={selectValue}
-            placeholder="Select Tone"
-            onChange={({value}) => setSelectValue(value)}
-            required
+          <FormControl label={() => "Tone"}>
+            <Select
+              options={[
+                { label: "Professional", id: "professional" },
+                { label: "Excited", id: "excited" },
+                { label: "Encouraging", id: "encouraging" },
+                { label: "Funny", id: "funny" },
+                { label: "Dramatic", id: "dramatic" },
+                { label: "Sarcastic", id: "sarcastic" },
+                { label: "Engaging", id: "engaging" },
+                { label: "Creative", id: "creative" },
+                { label: "Persusasive", id: "persusasive" },
+                { label: "Thoughtful", id: "thoughtful" },
+                { label: "Persuasive", id: "persuasive" }
+              ]}
+              value={selectValue}
+              placeholder="Select Tone"
+              onChange={({ value }) => setSelectValue(value)}
+              required
             />
           </FormControl>
-          <Button type="submit" disabled={isSubmitting}>
+          <Button type="submit" disabled={isSubmitting} style={{
+            background: 'linear-gradient(54.96deg, #3A35CB -37.27%, #9277FF 124.46%)', borderRadius: '5px', fontFamily: 'Poppins', fontStyle: 'normal', fontWeight: '500', fontSize: '15px', display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: '10px 20px',
+            gap: '10px',
+            width: '82px',
+            height: '38px'
+          }}>
             {isSubmitting ?
-            <Spinner $size={SIZE.small} />
-            : 'Create'}
+              <Spinner $size={SIZE.small} />
+              : 'Create'}
           </Button>
         </form>
       </Block>
@@ -174,8 +186,20 @@ const Slogan = () => {
             ) : (
               <Card>
                 <StyledBody>
-                 {searchData}
+                  {searchData}
                 </StyledBody>
+
+                <Button type="button" style={{
+                  background: 'rgba(102, 102, 102, 0.75)', borderRadius: '5px', fontFamily: 'Poppins', fontStyle: 'normal', fontWeight: '500', fontSize: '16px', display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  padding: '8px 6px',
+                  gap: '2px',
+                  width: '150px',
+                  height: '38px'
+                }}> <img src={copy_text} style={{ marginTop: '1px', height: '19px' }} />Add To Canvas
+
+                </Button>
               </Card>
             )}
             {/* <div className="logomaker" >Slogan</div> */}
@@ -198,4 +222,3 @@ const Slogan = () => {
 
 
 export default Slogan
-

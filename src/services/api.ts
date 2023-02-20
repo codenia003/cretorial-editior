@@ -178,11 +178,12 @@ class ApiService {
     })
   }
 
-  getPublicDesigns(): Promise<IDesign[]> {
+  getPublicDesigns(category: any): Promise<IDesign[]> {
 
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(`https://www.cretorial.ai/cretorial/api/editor/template.php`, {
+        //alert(`https://www.cretorial.ai/cretorial/api/editor/template.php?search=`+category);
+        const response = await fetch(`https://www.cretorial.ai/cretorial/api/editor/template.php?search=`+category, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'
@@ -197,11 +198,11 @@ class ApiService {
     })
   }
 
-  getStickers(): Promise<any> {
+  getStickers(search: any): Promise<any> {
 
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(`https://www.cretorial.ai/cretorial/api/editor/stickers.php`, {
+        const response = await fetch(`https://www.cretorial.ai/cretorial/api/editor/stickers.php?search=`+search, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'
@@ -215,11 +216,12 @@ class ApiService {
     })
   }
   
-  getUnsplash(): Promise<any> {
+  getUnsplash(search: any): Promise<any> {
 
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(`https://www.cretorial.ai/cretorial/api/editor/unsplash.php`, {
+       //alert(`https://www.cretorial.ai/cretorial/api/editor/unsplash.php?search=`+search);
+        const response = await fetch(`https://www.cretorial.ai/cretorial/api/editor/unsplash.php?search=`+search, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'
@@ -351,8 +353,8 @@ class ApiService {
     return new Promise(async (resolve, reject) => {
       
       try {
-       
-        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=10&type=search`, {
+      
+        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=100&type=search`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'
@@ -371,7 +373,7 @@ class ApiService {
   getPexelsImages = (text:any): Promise<Resource[]> => {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=10&type=search`, {
+        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=100&type=search`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'

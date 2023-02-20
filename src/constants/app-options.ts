@@ -44,6 +44,10 @@ export const BASE_ITEMS = [
     name: "Slogan",
   },
   {
+    id: "searchslogan",
+    name: "Searchslogan",
+  },
+  {
     id: "layers",
     name: "Layers",
   },

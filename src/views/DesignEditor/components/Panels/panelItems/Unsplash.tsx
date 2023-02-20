@@ -14,6 +14,7 @@ import { Input } from "baseui/input"
 const Unsplash = () => {
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
+  const [category, setCategory] = useState<string>("")
 
   const [spinner, setSpinner] = useState(true);
   const [images, setImages] = useState([]);
@@ -33,15 +34,15 @@ const Unsplash = () => {
 
   const _getUnsplash = async () => {
     setSpinner(true);
-    const unsplash = await api.getUnsplash();
+    const unsplash = await api.getUnsplash(category);
     setImages(unsplash);
     setSpinner(false);
   }
-  const getSearchData = (event: any) => {
-     if (event.key === "Enter") {
-       //alert(event.target.value)
-     }
-   }
+  const getSearchData = () => {
+
+    _getUnsplash();
+
+  }
 
   useEffect(() => {
     _getUnsplash();
@@ -65,7 +66,24 @@ const Unsplash = () => {
         </Block>
       </Block>
       <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+
         <Input
+          overrides={{
+            Root: {
+              style: {
+                paddingLeft: "8px",
+              },
+            },
+          }}
+          onKeyDown={(key) => key.code === "Enter" && getSearchData()}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          placeholder="Search"
+          size={"compact"}
+          startEnhancer={<Search size={16} />}
+        />
+
+        {/* <Input
           overrides={{
             Root: {
               style: {
@@ -77,7 +95,7 @@ const Unsplash = () => {
           placeholder="Search"
           size={"compact"}
           startEnhancer={<Search size={16} />}
-        />
+        /> */}
       </Block>
       <Scrollable>
         <Block padding="0 1.5rem">

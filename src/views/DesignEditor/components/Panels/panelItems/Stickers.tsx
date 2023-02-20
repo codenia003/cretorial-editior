@@ -9,10 +9,13 @@ import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import api from "~/services/api"
 import { Spinner } from "baseui/spinner"
+import { Input } from "baseui/input"
+import Search from "~/components/Icons/Search"
 
 const Stickers = () => {
   const inputFileRef = React.useRef<HTMLInputElement>(null)
   const [spinner, setSpinner] = useState(true);
+  const [category, setCategory] = useState<string>("")
 
   const [vectors, setVectors] = useState([]);
 
@@ -46,19 +49,23 @@ const Stickers = () => {
   }
 
   const _getStickers = async () => {
-    setSpinner(true);
-    const stickers = await api.getStickers();
+    const stickers = await api.getStickers(category);
     setVectors(stickers);
     setSpinner(false);
-    //alert(JSON.stringify(stickers));
   }
 
   useEffect(() => {
+
     _getStickers();
   }, [])
 
   const handleInputFileRefClick = () => {
     inputFileRef.current?.click()
+  }
+  const getSearchData = () => {
+    setSpinner(true);
+    _getStickers();
+
   }
 
   return (
@@ -78,6 +85,25 @@ const Stickers = () => {
         <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />
         </Block>
+      </Block>
+
+      <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+
+        <Input
+          overrides={{
+            Root: {
+              style: {
+                paddingLeft: "8px",
+              },
+            },
+          }}
+          onKeyDown={(key) => key.code === "Enter" && getSearchData()}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          placeholder="Search"
+          size={"compact"}
+          startEnhancer={<Search size={16} />}
+        />
       </Block>
 
       {/* <Block padding="0 1.5rem">

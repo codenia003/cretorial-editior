@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
 import Scrollable from "~/components/Scrollable"
@@ -12,7 +12,8 @@ import api from "~/services/api"
 import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 
-const Pixabay = () => {
+const Searchslogan = () => {
+
   const editor = useEditor()
   const [hasMore, setHasMore] = React.useState(true)
   const [images, setImages] = useState<IStaticImage[]>([])
@@ -39,7 +40,7 @@ const Pixabay = () => {
     async (reset?: boolean) => {
       setIsloading(true)
 
-      const newImages = await api.getPixabayImages(category);
+      const newImages = await api.getPexelsImages(category)
 
       if (newImages.length === 0) {
         setHasMore(false)
@@ -66,12 +67,6 @@ const Pixabay = () => {
     setIsloading(true)
     fetchData(true)
   }
-  useEffect(() => {
-    if (isloading) {
-      fetchData();
-    }
-  }, [isloading]);
-
   return (
     <Block flex={1} flexDirection="column" display={"flex"}>
       <Block
@@ -83,7 +78,7 @@ const Pixabay = () => {
           padding: "1.5rem 1.5rem 0",
         }}
       >
-        <Block>Pixabay images</Block>
+        <Block>Search</Block>
 
         <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />
@@ -108,42 +103,11 @@ const Pixabay = () => {
           startEnhancer={<Search size={16} />}
         />
       </Block>
-      <Scrollable>
-        <Block padding={"0 1.5rem"}>
 
-          <Block
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gap: "0.5rem",
-            }}
-          >
-            {images.map((image) => {
-              return (
-                <Block
-                  $style={{ cursor: "pointer", borderRadius: "10px", overflow: "hidden" }}
-                  onClick={() => addObject(image.src)}
-                  key={image.id}
-                >
-                  <LazyLoadImage url={image.src} />
-                </Block>
-              )
-            })}
-          </Block>
-          <Block
-            $style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingY: "2rem",
-            }}
-          >
-            {isloading && <Spinner $size={SIZE.small} />}
-          </Block>
-
-        </Block>
-      </Scrollable>
     </Block>
   )
 }
 
-export default Pixabay
+
+export default Searchslogan
+

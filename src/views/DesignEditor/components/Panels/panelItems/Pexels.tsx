@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useEditor } from "@layerhub-io/react"
 import { Block } from "baseui/block"
 import Scrollable from "~/components/Scrollable"
@@ -66,6 +66,13 @@ const Pexels = () => {
     setIsloading(true)
     fetchData(true)
   }
+
+  useEffect(() => {
+    if (isloading) {
+      fetchData();
+    }
+  }, [isloading]);
+
   return (
     <Block flex={1} flexDirection="column" display={"flex"}>
       <Block
@@ -104,36 +111,36 @@ const Pexels = () => {
       </Block>
       <Scrollable>
         <Block padding={"0 1.5rem"}>
-          <InfiniteScrolling fetchData={fetchData} hasMore={hasMore}>
-            <Block
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                gap: "0.5rem",
-              }}
-            >
-              {images.map((image) => {
-                return (
-                  <Block
-                    $style={{ cursor: "pointer", borderRadius: "10px", overflow: "hidden" }}
-                    onClick={() => addObject(image.src)}
-                    key={image.id}
-                  >
-                    <LazyLoadImage url={image.src} />
-                  </Block>
-                )
-              })}
-            </Block>
-            <Block
-              $style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingY: "2rem",
-              }}
-            >
-              {isloading && <Spinner $size={SIZE.small} />}
-            </Block>
-          </InfiniteScrolling>
+
+          <Block
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: "0.5rem",
+            }}
+          >
+            {images.map((image) => {
+              return (
+                <Block
+                  $style={{ cursor: "pointer", borderRadius: "10px", overflow: "hidden" }}
+                  onClick={() => addObject(image.src)}
+                  key={image.id}
+                >
+                  <LazyLoadImage url={image.src} />
+                </Block>
+              )
+            })}
+          </Block>
+          <Block
+            $style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingY: "2rem",
+            }}
+          >
+            {isloading && <Spinner $size={SIZE.small} />}
+          </Block>
+
         </Block>
       </Scrollable>
     </Block>
