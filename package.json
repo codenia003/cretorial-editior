@@ -44,7 +44,8 @@
     "use-debounce": "^8.0.4",
     "use-latest": "^1.2.1",
     "use-react-screenshot": "^3.0.0",
-    "use-dynamic-refs": "^1.0.0"
+    "use-dynamic-refs": "^1.0.0",
+    "react-bootstrap": "2.0.0-rc.0"
   },
   "devDependencies": {
     "@layerhub-io/types": "^0.3.0",

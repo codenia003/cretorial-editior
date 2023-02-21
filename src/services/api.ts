@@ -435,6 +435,105 @@ class ApiService {
       }
     })
   }
+
+  searchSlogans = (keyword:any): Promise<Resource[]> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const body = JSON.stringify({"EID": "4a38a59a-dea1-4a01-bf5c-3511219e83a3", "q": keyword});
+        const response = await fetch('https://captiongenie.in/executor/run', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ac241c06c1c1460eb57f93e34270391d',
+        },
+        body
+      });
+        const data = await response.json();
+        resolve(data.Output)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  getCategoryResultFromFrank = (category:any, categoryid: any, exactMatch: boolean, subCategory: string, tonality: any, word: any, categoryChecked:any): Promise<Resource[]> => {
+    
+    return new Promise(async (resolve, reject) => {
+      try {
+        const token = "ac241c06c1c1460eb57f93e34270391d";
+
+        const body = JSON.stringify({
+          "terms": parseInt(categoryid) > 0 ? "" : category,
+          "cats": categoryChecked,
+          "catsid":
+              parseInt(categoryid) > 0 && subCategory == "" ? categoryid : "",
+          "tones": tonality,
+          "langs": "English",
+          "nwords": word != "" ? word : "1-150",
+          "limit": 100,
+          "contexual": exactMatch ? false : true,
+          "paid": true,
+          "user": "934706d5fbc54e4789088e2b4a9a8742"
+        });
+        console.log(body);
+        const response = await fetch('https://captiongenie.in/runner/run/pccardsearch', {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body
+        });
+        const { status } = response;
+        const data = await response.json();
+
+        resolve(data.result.Cards)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+
+  tonality = (): Promise<Resource[]> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const body = JSON.stringify({"language": "English"});
+      console.log(body);
+      const response = await fetch('https://www.cretorial.ai/cretorial/api/tonality.php', {
+        method: 'POST',
+        body
+      });
+      const { status } = response;
+      const data = await response.json();
+  
+        resolve(data.data)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
+  filterCategory = (): Promise<Resource[]> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch('https://caption.cretorial.com/api/categoryall', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          "languagecode": "English"
+        }
+      });
+      const { status } = response;
+      const data = await response.json();
+        resolve(data.result.data)
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
 }
 
 export default new ApiService()
