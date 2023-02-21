@@ -373,7 +373,8 @@ class ApiService {
   getPexelsImages = (text:any): Promise<Resource[]> => {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(`https://cretorial.ai/cretorial/api/editor/getpixabay.php?text=${text}&per_page=100&type=search`, {
+        if(text != ""){
+          const response = await fetch(`https://cretorial.ai/cretorial/api/editor/pexels.php?text=${text}&per_page=100&type=search`, {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json'
@@ -381,6 +382,18 @@ class ApiService {
         });
         const data = await response.json();
         resolve(data.images)
+        }else{  
+          const response = await fetch(`https://cretorial.ai/cretorial/api/editor/pexels.php?text=${text}&per_page=100&type=search1`, {
+          method: 'GET', 
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        resolve(data.images)
+        }
+        
+        
       } catch (err) {
         reject(err)
       }
