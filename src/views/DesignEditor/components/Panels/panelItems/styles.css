@@ -1,0 +1,112 @@
+.react-tabs {
+  display: flex;
+  width: 300px;
+  height: 75%;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.react-tabs ul {
+  border-right: 1px solid #ddd;
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+
+  margin: 0;
+  padding: 0;
+  color: white;
+  background: #fff;
+}
+
+.react-tabs__tab {
+  height: 50px;
+  list-style: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  color: #bbb;
+}
+
+.react-tabs__tab--selected {
+  background: #fff;
+  border-color: #fff;
+  border-right: 4px solid #6eb800;
+  color: black;
+}
+
+.react-tabs__tab-panel {
+  display: none;
+  width: 300px;
+}
+
+.react-tabs__tab-panel--selected {
+  display: block;
+}
+
+.react-tabs__tab {
+  padding-left: 24px;
+}
+
+.react-tabs__tab--selected {
+  padding-left: 21px;
+}
+
+.panel-content {
+  text-align: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 25px;
+  outline: none;
+}
+
+.switch input {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #5046d8;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #5046d8;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+}

@@ -38,7 +38,7 @@ const Logomaker = () => {
 
         const a = document.createElement("a");
         a.href = image;
-        a.download = createFileName("png", "donwload");
+        a.download = createFileName("png", "logo");
         a.click();
       })
       .catch((e) => {

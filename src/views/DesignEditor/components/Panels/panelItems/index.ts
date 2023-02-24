@@ -7,6 +7,7 @@ import Pexels from "./Pexels"
 import Logomaker from "./Logomaker"
 import Searchslogan from "./Searchslogan"
 import Slogan from "./Slogan"
+import Removebackground from "./Removebackground"
 import Templates from "./Templates"
 import Uploads from "./Uploads"
 import Unsplash from "./Unsplash"
@@ -26,6 +27,7 @@ export default {
   Pixabay: Pixabay,
   Pexels: Pexels,
   Logomaker: Logomaker,
+  Removebackground: Removebackground,
   Slogan: Slogan,
   Searchslogan: Searchslogan,
   Templates: Templates,

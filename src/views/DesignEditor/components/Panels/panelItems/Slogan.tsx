@@ -25,6 +25,9 @@ import {
   StyledBody,
   StyledAction
 } from "baseui/card";
+import { FontItem } from "~/interfaces/common";
+import { loadFonts } from "~/utils/fonts";
+import { nanoid } from "nanoid";
 
 
 function Negative() {
@@ -56,7 +59,7 @@ const Slogan = () => {
   const [selectValue, setSelectValue] = React.useState<Value>([]);
   const [isSubmitting, setIsLoading] = useState(false);
 
-  const [searchData, setsearchData] = useState<any>(null);
+  const [searchData, setsearchData] = useState([]);
   const [postData, setData] = useState({
     userid: "",
     similar: "",
@@ -84,16 +87,25 @@ const Slogan = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsLoading(true);
-    setsearchData(null);
+    setsearchData([]);
     postData.desc = value;
     postData.tone = selectValue[0].id as string;
     const searchData = postData;
-    console.log(searchData);
+
     const data = await api.contentPost('sloganskykeywords', { searchData });
-    const res = data?.map(function (val: any) {
-      return val;
-    }).join("\r\n");
-    setsearchData(res);
+    // const res = data?.map(function (val: any) {
+    //   return val;
+    // }).join("\r\n");
+    const res = data.filter((val: any) => val != " ");
+    //alert(JSON.stringify(res));
+
+    let output: any = [];
+    for (var i = 0; i < res.length; i++) {
+      output.push(res[i]);
+    }
+    //alert(JSON.stringify(output));
+
+    setsearchData(output);
     setIsLoading(false);
 
     // console.log(res);
@@ -105,6 +117,31 @@ const Slogan = () => {
     setIsloading(true)
     fetchData(true)
   }
+
+  const addObject = async (text: any) => {
+    if (editor) {
+      const font: FontItem = {
+        name: "OpenSans-Regular",
+        url: "https://fonts.gstatic.com/s/opensans/v27/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4nY1M2xLER.ttf",
+      }
+      await loadFonts([font])
+      const options = {
+        id: nanoid(),
+        type: "StaticText",
+        width: 420,
+        text: text,
+        fontSize: 92,
+        fontFamily: font.name,
+        textAlign: "center",
+        fontStyle: "normal",
+        fontURL: font.url,
+        fill: "#333333",
+        metadata: {},
+      }
+      editor.objects.add(options)
+    }
+  }
+
   return (
     <Block flex={1} flexDirection="column" display={"flex"}>
       <Block
@@ -174,14 +211,39 @@ const Slogan = () => {
       </Block>
       <Scrollable>
         <Block padding={"0 1.5rem"}>
-          <Block
-            $style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingY: "2rem",
-            }}
-          >
-            {searchData === null ? (
+
+
+          <ul style={{ padding: "0px" }}>
+            {searchData.map((item: any) => {
+              let text: string = item;
+              let newText =
+                text != null ? text : "";
+
+
+
+              return <li style={{ listStyle: "none", padding: "10px 0px" }}> <Card>
+                <StyledBody>
+                  <div style={{ fontSize: "14px" }}>{newText}</div>
+                </StyledBody>
+
+                <Button type="button" onClick={() => addObject(newText)} style={{
+                  background: 'rgba(102, 102, 102, 0.75)', borderRadius: '5px', fontFamily: 'Poppins', fontStyle: 'normal', fontWeight: '500', fontSize: '15px', display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  padding: '8px 6px',
+                  gap: '2px',
+                  width: '150px',
+                  height: '38px',
+
+
+                }}> Add To Canvas
+
+                </Button>
+              </Card></li>
+
+            })}
+          </ul>
+          {/* {searchData === null ? (
               ""
             ) : (
               <Card>
@@ -201,9 +263,9 @@ const Slogan = () => {
 
                 </Button>
               </Card>
-            )}
-            {/* <div className="logomaker" >Slogan</div> */}
-          </Block>
+            )} */}
+          {/* <div className="logomaker" >Slogan</div> */}
+
           <Block
             $style={{
               display: "flex",

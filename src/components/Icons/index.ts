@@ -8,6 +8,7 @@ import Stickers from "./Stickers"
 import Pixabay from "./Pixabay"
 import Pexels from "./Pexels"
 import Logomaker from "./Logomaker"
+import Removebackground from "./Removebackground"
 import Slogan from "./Slogan"
 import Searchslogan from "./Searchslogan"
 import Uploads from "./Uploads"
@@ -40,6 +41,7 @@ class Icons {
   static Pixabay = Pixabay
   static Pexels = Pexels
   static Logomaker = Logomaker
+  static Removebackground = Removebackground
   static Slogan = Slogan
   static Searchslogan = Searchslogan
   static Uploads = Uploads

@@ -7,25 +7,10 @@ export const BASE_ITEMS = [
     id: "customize",
     name: "Customize",
   },
-  {
-    id: "elements",
-    name: "Elements",
-  },
+  
   {
     id: "unsplash",
     name: "Unsplash",
-  },
-  {
-    id: "uploads",
-    name: "Uploads",
-  },
-  {
-    id: "text",
-    name: "Text",
-  },
-  {
-    id: "stickers",
-    name: "Stickers",
   },
   {
     id: "pixabay",
@@ -36,20 +21,43 @@ export const BASE_ITEMS = [
     name: "Pexels",
   },
   {
-    id: "logomaker",
-    name: "Logomaker",
+    id: "uploads",
+    name: "Uploads",
+  },
+  
+  {
+    id: "searchslogan",
+    name: "Searchslogan",
   },
   {
     id: "slogan",
     name: "Slogan",
   },
   {
-    id: "searchslogan",
-    name: "Searchslogan",
+    id: "text",
+    name: "Text",
   },
+  {
+    id: "stickers",
+    name: "Stickers",
+  },
+  
+  {
+    id: "logomaker",
+    name: "Logomaker",
+  },
+  {
+    id: "removebackground",
+    name: "Removebackground",
+  },
+  
   {
     id: "layers",
     name: "Layers",
+  },
+  {
+    id: "elements",
+    name: "Elements",
   },
 ]
 

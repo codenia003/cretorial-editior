@@ -500,14 +500,14 @@ class ApiService {
     return new Promise(async (resolve, reject) => {
       try {
         const body = JSON.stringify({"language": "English"});
-      console.log(body);
-      const response = await fetch('https://www.cretorial.ai/cretorial/api/tonality.php', {
-        method: 'POST',
-        body
-      });
-      const { status } = response;
-      const data = await response.json();
-  
+        console.log(body);
+        const response = await fetch('https://www.cretorial.ai/cretorial/api/tonality.php', {
+          method: 'POST',
+          body
+        });
+        const { status } = response;
+        const data = await response.json();
+    
         resolve(data.data)
       } catch (err) {
         reject(err)
@@ -534,6 +534,53 @@ class ApiService {
       }
     })
   }
+
+  removeBackground = (rmbg: any): Promise<Resource[]> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+          //const body: any = {"imgBase64": rmbg};
+          const body = new FormData();
+          body.append("imgBase64", rmbg);
+
+          console.log(body);
+          const response = await fetch('https://text-stock.com/textstock-bot/remove-bg-image-web', {
+            method: 'POST',
+            body
+          });
+          const { status } = response;
+          const data = await response.json();
+          console.log(JSON.stringify(data));
+          if(data.status == "true"){
+            resolve(data.output_path)
+          }else{
+            resolve(data)
+          }
+          
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
 }
 
+
+
+
+// static Future removeBackground(image) async {
+//   FormData formdata = FormData.fromMap({
+//     "imgBase64": image,
+//   });
+//   var dio = Dio();
+
+//   var responseData = await dio.post(
+//     "https://text-stock.com/textstock-bot/remove-bg-image-web",
+//     data: formdata,
+//   );
+//   if (responseData.statusCode == 200) {
+//     var imgFile = responseData.data["output_path"];
+//     return imgFile;
+//   } else {
+//     return null;
+//   }
+// }
 export default new ApiService()
