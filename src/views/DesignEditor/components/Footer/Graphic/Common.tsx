@@ -38,6 +38,8 @@ const Common = () => {
   }, [zoomRatio])
 
   const handleChange = (type: string, value: number) => {
+    setOptions({ ...options, zoomRatioTemp: value })
+
     if (editor) {
       if (type.includes("emp")) {
         setOptions({ ...options, zoomRatioTemp: value })
@@ -47,6 +49,7 @@ const Common = () => {
 
   const applyZoomRatio = (type: string, e: any) => {
     const value = e.target.value
+
     if (editor) {
       if (value === "") {
         setOptions({ ...options, zoomRatio: options.zoomRatio, zoomRatioTemp: options.zoomRatio })
@@ -169,22 +172,40 @@ const Common = () => {
           min={zoomMin}
           onChange={(e) => handleChange("zoomRatioTemp", parseFloat(e.target.value))}
           onKeyUp={(e) => applyZoomRatio("zoomRatio", e)}
-          value={options.zoomRatioTemp}
+          value={Math.round((options.zoomRatio / zoomMax) * 100)}
         />
       </div>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "end" }}>
-        <Button kind={KIND.tertiary} size={SIZE.compact}>
+        {/* <Button kind={KIND.tertiary} size={SIZE.compact}>
           <Icons.Refresh size={16} />
-        </Button>
-        <Button kind={KIND.tertiary} size={SIZE.compact}>
-          <Icons.Undo size={22} />
-        </Button>
-        <Button kind={KIND.tertiary} size={SIZE.compact}>
-          <Icons.Redo size={22} />
-        </Button>
-        <Button kind={KIND.tertiary} size={SIZE.compact}>
+        </Button> */}
+
+        <StatefulTooltip
+          placement={PLACEMENT.bottom}
+          showArrow={true}
+          accessibilityType={"tooltip"}
+          content="Undo"
+        >
+          <Button kind={KIND.tertiary} size={SIZE.compact} onClick={() => editor.history.undo()}>
+            <Icons.Undo size={22} />
+          </Button>
+        </StatefulTooltip>
+
+        <StatefulTooltip
+          placement={PLACEMENT.bottom}
+          showArrow={true}
+          accessibilityType={"tooltip"}
+          content="Redo"
+        >
+          <Button kind={KIND.tertiary} size={SIZE.compact} onClick={() => editor.history.redo()}>
+            <Icons.Redo size={22} />
+          </Button>
+        </StatefulTooltip>
+
+
+        {/* <Button kind={KIND.tertiary} size={SIZE.compact}>
           <Icons.TimePast size={16} />
-        </Button>
+        </Button> */}
       </div>
     </Container>
   )

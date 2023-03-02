@@ -11,6 +11,8 @@ import { SIZE, Spinner } from "baseui/spinner"
 import api from "~/services/api"
 import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
+import { Link } from "react-router-dom"
+import PexelsIcons from "~/components/Icons/PexelsIcons"
 
 const Pexels = () => {
   const editor = useEditor()
@@ -84,7 +86,7 @@ const Pexels = () => {
           padding: "1.5rem 1.5rem 0",
         }}
       >
-        <Block>Pexels images</Block>
+        <Block style={{ width: "150px" }}> <Link target="_blank" style={{ color: "#413acf" }} to="https://www.pexels.com/"><PexelsIcons size={18} /></Link></Block>
 
         <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />

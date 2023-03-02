@@ -10,8 +10,10 @@ import api from "~/services/api"
 import Spinner from "baseui/icon/spinner"
 import Search from "~/components/Icons/Search"
 import { Input } from "baseui/input"
+import { Link } from "react-router-dom"
+import Unsplash from "~/components/Icons/Unsplash"
 
-const Unsplash = () => {
+const Unsplashs = () => {
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const [category, setCategory] = useState<string>("")
@@ -59,7 +61,7 @@ const Unsplash = () => {
           padding: "1.5rem",
         }}
       >
-        <Block>Unsplash</Block>
+        <Block style={{ width: "150px", display: "inherit" }}> <Link target="_blank" style={{ color: "#413acf" }} to="https://unsplash.com/"><Unsplash size={18} /></Link><span style={{ paddingTop: "10px", marginLeft: "10px", fontWeight: "bold" }}>Unsplash</span></Block>
 
         <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />
@@ -185,4 +187,4 @@ const ImageItem = ({ preview, onClick }: { preview: any; onClick?: (option: any)
   )
 }
 
-export default Unsplash
+export default Unsplashs

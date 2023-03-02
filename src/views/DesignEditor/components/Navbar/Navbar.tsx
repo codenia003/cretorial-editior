@@ -14,6 +14,7 @@ import { loadVideoEditorAssets } from "~/utils/video"
 import DesignTitle from "./DesignTitle"
 import { IDesign } from "~/interfaces/DesignEditor"
 import Github from "~/components/Icons/Github"
+import { Link } from "react-router-dom"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -136,19 +137,26 @@ const Navbar = () => {
 
   const makeDownload = async (data: Object) => {
 
+    const usersession = localStorage.getItem('usersession');
+    console.log("usersession=" + usersession);
+
     const template = editor.scene.exportToJSON()
     const image = (await editor.renderer.render(template)) as string
-    //alert(image);
+    if (template.layers.length > 1) {
 
-    //const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`
-    const dataStr = image;
-    const a = document.createElement("a")
-    a.href = dataStr
-    a.download = "template.png"
-    a.click()
+      //const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`
+      const dataStr = image;
+      const a = document.createElement("a")
+      a.href = dataStr
+      a.download = "template.png"
+      a.click()
+    } else {
+      alert("Please select atleast 1 template or text");
+    }
   }
 
   const makeDownloadTemplate = async () => {
+    console.log(localStorage.getItem("usersession"));
     if (editor) {
       if (editorType === "GRAPHIC") {
         return parseGraphicJSON()
@@ -264,12 +272,18 @@ const Navbar = () => {
     }
   }
 
+  const _home = () => {
+    window.location.href = "https://app.cretorial.ai/";
+  }
+
   return (
     // @ts-ignore
     <ThemeProvider theme={DarkTheme}>
-      <Container style={{background:"linear-gradient(90deg, #3A35CB 0%, #9277FF 100%)"}}>
+      <Container style={{ background: "linear-gradient(90deg, #3A35CB 0%, #9277FF 100%)" }}>
         <div style={{ color: "#ffffff" }}>
-          <Logo size={36} />
+          <Block onClick={() => _home()} style={{ cursor: "pointer" }}>
+            <Logo size={36} />
+          </Block>
         </div>
         <DesignTitle />
         <Block $style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
@@ -310,7 +324,7 @@ const Navbar = () => {
           >
             Download
           </Button>
-          <Button
+          {/* <Button
             size="compact"
             onClick={() => setDisplayPreview(true)}
             kind={KIND.tertiary}
@@ -323,7 +337,7 @@ const Navbar = () => {
             }}
           >
             <Play size={24} />
-          </Button>
+          </Button> */}
 
 
         </Block>

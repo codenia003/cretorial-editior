@@ -236,7 +236,7 @@ const Slogan = () => {
                   height: '38px',
 
 
-                }}> Add To Canvas
+                }}> Add to Canvas
 
                 </Button>
               </Card></li>

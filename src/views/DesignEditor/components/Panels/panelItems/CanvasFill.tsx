@@ -5,6 +5,7 @@ import { HexColorPicker } from "react-colorful"
 import { Delete } from "baseui/icon"
 import { throttle } from "lodash"
 import { useEditor } from "@layerhub-io/react"
+import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 
 const PRESET_COLORS = [
   "#f44336",
@@ -23,6 +24,7 @@ const PRESET_COLORS = [
 
 const CanvasFill = () => {
   const editor = useEditor()
+  const setIsSidebarOpen = useSetIsSidebarOpen()
 
   const updateCanvasBackground = throttle((color: string) => {
     editor.canvas.setBackgroundColor(color)
@@ -42,7 +44,8 @@ const CanvasFill = () => {
         <Block>Canvas Fill</Block>
 
         <Block $style={{ cursor: "pointer", display: "flex" }}>
-          <Delete size={24} />
+
+          <Delete size={24} onClick={() => setIsSidebarOpen(false)} />
         </Block>
       </Block>
       <Scrollable>

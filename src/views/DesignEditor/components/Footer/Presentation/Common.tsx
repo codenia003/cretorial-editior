@@ -38,6 +38,7 @@ const Common = () => {
   }, [zoomRatio])
 
   const handleChange = (type: string, value: number) => {
+
     if (editor) {
       if (type.includes("emp")) {
         setOptions({ ...options, zoomRatioTemp: value })

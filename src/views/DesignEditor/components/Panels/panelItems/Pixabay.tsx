@@ -11,6 +11,8 @@ import { SIZE, Spinner } from "baseui/spinner"
 import api from "~/services/api"
 import AngleDoubleLeft from "~/components/Icons/AngleDoubleLeft"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
+import PixabayIcons from "~/components/Icons/PixabayIcons"
+import { Link } from "react-router-dom"
 
 const Pixabay = () => {
   const editor = useEditor()
@@ -83,7 +85,7 @@ const Pixabay = () => {
           padding: "1.5rem 1.5rem 0",
         }}
       >
-        <Block>Pixabay images</Block>
+        <Block style={{ width: "150px" }}> <Link target="_blank" style={{ color: "#413acf" }} to="https://pixabay.com/"><PixabayIcons size={18} /></Link></Block>
 
         <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />

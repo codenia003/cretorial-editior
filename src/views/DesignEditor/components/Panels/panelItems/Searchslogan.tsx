@@ -101,6 +101,7 @@ const Searchslogan = () => {
 
   let contextual = false;
   const getCategoryData = async (categoryid: any) => {
+    setIsCompleted(false);
     clear();
     setIndex(10);
     setPost([]);
@@ -473,8 +474,7 @@ const Searchslogan = () => {
 
 
 
-
-          <Scrollable>
+          {searchResults.length == 0 ? <> <Scrollable>
             <Block padding={"0 1.5rem"}>
 
               <Block
@@ -505,7 +505,7 @@ const Searchslogan = () => {
                         height: '38px',
 
 
-                      }}> Add To Canvas
+                      }}> Add to Canvas
 
                       </Button>
                     </Card></li>
@@ -524,8 +524,45 @@ const Searchslogan = () => {
               </Block>
 
 
+              {initialPosts.length > 9 && (
+                <div className="d-grid mt-3 mb-5" style={{ textAlign: "center", paddingBottom: "8%" }}>
+                  {isCompleted ? (
+
+                    <Button type="button" onClick={() => getCategoryData("")} style={{
+                      background: 'rgba(102, 102, 102, 0.75)',
+                      borderRadius: '5px',
+                      fontSize: '15px',
+                      height: '38px',
+
+                    }}> Magic Shuffle </Button>
+
+
+                  ) : (
+
+                    <Button type="button" onClick={loadMore} style={{
+                      background: 'rgba(102, 102, 102, 0.75)',
+                      borderRadius: '5px',
+                      fontSize: '15px',
+                      height: '38px',
+
+                    }}> Load More + </Button>
+
+
+                  )}
+                </div>
+              )}
+
+
             </Block>
           </Scrollable>
+
+
+
+          </>
+            : <></>}
+
+
+
 
 
 

@@ -71,7 +71,7 @@ const PanelListItem = ({ label, icon, activePanel, name }: any) => {
       }}
     >
       <Icon size={24} />
-      <div>{label}</div>
+      <div style={{ textAlign: "center" }}>{label}</div>
     </Block>
   )
 }
