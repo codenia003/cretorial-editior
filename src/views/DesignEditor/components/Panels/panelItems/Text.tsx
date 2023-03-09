@@ -1,7 +1,6 @@
 import React from "react"
 import { Button, SIZE } from "baseui/button"
 import { textComponents } from "~/constants/editor"
-import { useStyletron } from "styletron-react"
 import { useEditor } from "@layerhub-io/react"
 import { FontItem } from "~/interfaces/common"
 import { loadFonts } from "~/utils/fonts"
@@ -15,6 +14,11 @@ import { useSelector } from "react-redux"
 import { selectPublicComponents } from "~/store/slices/components/selectors"
 import api from "~/services/api"
 import { IComponent } from "~/interfaces/DesignEditor"
+import useAppContext from "~/hooks/useAppContext"
+import { useStyletron } from "baseui"
+import Text from "~/components/Icons/Text"
+import Searchslogan from "~/components/Icons/Searchslogan"
+import Slogan from "~/components/Icons/Slogan"
 
 const textOptions = {
   id: nanoid(),
@@ -32,10 +36,12 @@ const textOptions = {
 }
 
 export default function () {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
-  const components = useSelector(selectPublicComponents) 
-  
+  const components = useSelector(selectPublicComponents)
+
   const addObject = async () => {
     if (editor) {
       const font: FontItem = {
@@ -55,6 +61,7 @@ export default function () {
         fontURL: font.url,
         fill: "#333333",
         metadata: {},
+        name: "Add some text"
       }
       editor.objects.add(options)
     }
@@ -160,12 +167,121 @@ export default function () {
           padding: "1.5rem",
         }}
       >
-        <Block>Text</Block>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Text");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Text size={40} /></div>
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Text</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Searchslogan");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><div style={{ marginTop: "5px" }}><Searchslogan size={32} /></div></div>
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Search</div>
+          </Block>
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Slogan");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Slogan size={32} /></div>
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Make Slogans</div>
+          </Block>
+
         </Block>
+
+
       </Block>
+
+
       <Scrollable>
         <Block padding={"0 1.5rem"}>
           <Button

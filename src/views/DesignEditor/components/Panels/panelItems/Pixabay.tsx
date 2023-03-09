@@ -14,7 +14,16 @@ import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import PixabayIcons from "~/components/Icons/PixabayIcons"
 import { Link } from "react-router-dom"
 
+import Pexels from "~/components/Icons/Pexels"
+import PixabayI from "~/components/Icons/Pixabay"
+import UnsplashIcons from "~/components/Icons/Unsplash"
+import useAppContext from "~/hooks/useAppContext"
+import { useStyletron } from "baseui"
+
 const Pixabay = () => {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
+
   const editor = useEditor()
   const [hasMore, setHasMore] = React.useState(true)
   const [images, setImages] = useState<IStaticImage[]>([])
@@ -30,6 +39,7 @@ const Pixabay = () => {
         const options = {
           type: "StaticImage",
           src: url,
+          name: "Pixabay"
         }
         editor.objects.add(options)
       }
@@ -82,17 +92,124 @@ const Pixabay = () => {
           alignItems: "center",
           fontWeight: 500,
           justifyContent: "space-between",
-          padding: "1.5rem 1.5rem 0",
+          padding: "1.5rem",
         }}
       >
-        <Block style={{ width: "150px" }}> <Link target="_blank" style={{ color: "#413acf" }} to="https://pixabay.com/"><PixabayIcons size={18} /></Link></Block>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Unsplash");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><UnsplashIcons size={40} /></div>
+            <div style={{ textAlign: "center" }}>Unsplash</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Pixabay");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><div style={{ marginTop: "5px" }}><PixabayI size={32} /></div></div>
+            <div style={{ textAlign: "center" }}>Pixabay</div>
+          </Block>
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Pexels");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Pexels size={32} /></div>
+            <div style={{ textAlign: "center" }}>Pexels</div>
+          </Block>
+
         </Block>
-      </Block>
 
-      <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+
+      </Block>
+      <Block $style={{ padding: "0rem 1.5rem 1rem" }}>
+
         <Input
           overrides={{
             Root: {
@@ -102,13 +219,17 @@ const Pixabay = () => {
             },
           }}
           onKeyDown={(key) => key.code === "Enter" && makeSearch()}
-          onBlur={makeSearch}
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           placeholder="Search"
           size={"compact"}
           startEnhancer={<Search size={16} />}
         />
+
+
+
+        <Link target="_blank" style={{ color: "#444" }} to="https://pixabay.com/"><div style={{ float: "right", display: "flex" }}><span style={{ fontSize: "12px", marginTop: "5px", paddingRight: "10px" }}>Powered By </span> <PixabayI size={30} /></div></Link>
+
       </Block>
       <Scrollable>
         <Block padding={"0 1.5rem"}>

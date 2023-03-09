@@ -6,6 +6,7 @@ import Pixabay from "./Pixabay"
 import Pexels from "./Pexels"
 import Logomaker from "./Logomaker"
 import Searchslogan from "./Searchslogan"
+import Searchcreative from "./Searchcreative"
 import Slogan from "./Slogan"
 import Removebackground from "./Removebackground"
 import Templates from "./Templates"
@@ -20,6 +21,7 @@ import PathFill from "./PathFill"
 import CanvasFill from "./CanvasFill"
 import TextEffects from "./TextEffects"
 export default {
+   
   StaticText: TextProperties,
   Text: Text,
   Customize: Customize,
@@ -30,6 +32,7 @@ export default {
   Removebackground: Removebackground,
   Slogan: Slogan,
   Searchslogan: Searchslogan,
+  Searchcreative: Searchcreative,
   Templates: Templates,
   Uploads: Uploads,
   Unsplash: Unsplash,
@@ -42,3 +45,4 @@ export default {
   CanvasFill: CanvasFill,
   TextEffects: TextEffects,
 }
+

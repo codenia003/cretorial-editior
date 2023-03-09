@@ -14,6 +14,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635011325399_603749.png",
     id: "E2mcHFkwGA-MTJcfl3Abs",
+    name: "Elements"
   },
   {
     left: 0,
@@ -30,6 +31,7 @@ export const graphics = [
     metadata: {},
     id: "SY15tkntkk8S1PudoMfRI",
     preview: "https://ik.imagekit.io/scenify/1635011631415_820612.png",
+    name: "Elements"
   },
   {
     left: 0,
@@ -69,6 +71,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635014101144_519480.png",
     id: "9VWsxoB_O8LSAkCIRjNFY",
+    name: "Elements"
   },
   {
     left: 0,
@@ -136,6 +139,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635014130664_615881.png",
     id: "fRmRlanl-hydswssHKhn6",
+    name: "Elements"
   },
   {
     left: 0,
@@ -219,6 +223,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635014150489_628269.png",
     id: "A8WLbfJFV1D58X1RUZADd",
+    name: "Elements"
   },
   {
     left: 0,
@@ -306,6 +311,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635014314495_390592.png",
     id: "0dwJMLuw8DK9jddPSapOV",
+    name: "Elements"
   },
   {
     left: 0,
@@ -350,6 +356,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635014323800_275038.png",
     id: "3w9KPQbyeUe3kgtwpMZx4",
+    name: "Elements"
   },
   {
     left: 0,
@@ -483,6 +490,7 @@ export const graphics = [
     metadata: {},
     preview: "https://ik.imagekit.io/scenify/1635014340531_452464.png",
     id: "vAE3f8-4M0-2j5PF04cVY",
+    name: "Elements"
   },
 ]
  

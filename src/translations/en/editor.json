@@ -4,7 +4,7 @@
             "templates": "Templates",
             "customize": "Customize",
             "elements": "Elements",
-            "unsplash": "Unsplash",
+            "unsplash": "Images",
             "videos": "Videos",
             "uploads": "Uploads",
             "text": "Text",
@@ -15,6 +15,7 @@
             "removebackground": "Remove Background",
             "slogan": "Slogan",
             "searchslogan": "Search Text",
+            "searchcreative": "Search Creative",
             "layers": "Layers"
         }
     }

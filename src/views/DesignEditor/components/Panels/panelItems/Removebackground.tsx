@@ -45,6 +45,7 @@ export default function () {
       src: rmBackground,
       preview: rmBackground,
       type: type,
+      name: "Remove Background"
     }
 
     setUploads([...uploads, upload])

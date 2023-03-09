@@ -11,8 +11,15 @@ import api from "~/services/api"
 import { Spinner } from "baseui/spinner"
 import { Input } from "baseui/input"
 import Search from "~/components/Icons/Search"
+import Logomaker from "~/components/Icons/Logomaker"
+import Elements from "~/components/Icons/Elements"
+import Sticker from "~/components/Icons/Stickers"
+import useAppContext from "~/hooks/useAppContext"
 
 const Stickers = () => {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
+
   const inputFileRef = React.useRef<HTMLInputElement>(null)
   const [spinner, setSpinner] = useState(true);
   const [category, setCategory] = useState<string>("")
@@ -28,6 +35,10 @@ const Stickers = () => {
         const options = {
           type: "StaticImage",
           src: url,
+          name: "Stickers",
+          scaleX: 0.5,
+          scaleY: 0.5
+
         }
         editor.objects.add(options)
       }
@@ -80,14 +91,123 @@ const Stickers = () => {
           padding: "1.5rem",
         }}
       >
-        <Block>Stickers</Block>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Elements");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Elements size={40} /></div>
+            <div style={{ textAlign: "center" }}>Elements</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Stickers");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><div style={{ marginTop: "5px" }}><Sticker size={32} /></div></div>
+            <div style={{ textAlign: "center" }}>Stickers</div>
+          </Block>
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Logomaker");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Logomaker size={32} /></div>
+            <div style={{ textAlign: "center" }}>Logo Maker</div>
+          </Block>
+
+
+
         </Block>
+
+
       </Block>
 
-      <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+      <Block $style={{ padding: "0rem 1.5rem 1rem" }}>
 
         <Input
           overrides={{

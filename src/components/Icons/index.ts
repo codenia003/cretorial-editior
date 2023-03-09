@@ -3,7 +3,7 @@ import Elements from "./Elements"
 import Text from "./Text"
 import Templates from "./Templates"
 import Search from "./Search"
-import Unsplash from "./Unsplash"
+import Unsplash from "./Images"
 import Stickers from "./Stickers"
 import Pixabay from "./Pixabay"
 import Pexels from "./Pexels"
@@ -11,6 +11,7 @@ import Logomaker from "./Logomaker"
 import Removebackground from "./Removebackground"
 import Slogan from "./Slogan"
 import Searchslogan from "./Searchslogan"
+import Searchcreative from "./Searchcreative"
 import Uploads from "./Uploads"
 import Logo from "./Logo"
 import Compress from "./Compress"
@@ -44,6 +45,7 @@ class Icons {
   static Removebackground = Removebackground
   static Slogan = Slogan
   static Searchslogan = Searchslogan
+  static Searchcreative = Searchcreative
   static Uploads = Uploads
   static Logo = Logo
   static Compress = Compress

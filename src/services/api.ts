@@ -561,26 +561,26 @@ class ApiService {
       }
     })
   }
+
+  getLogoMaker = (): Promise<Resource[]> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+         
+          const response = await fetch('https://www.cretorial.ai/cretorial/api/editor/logomaker.php', {
+            method: 'GET'
+          });
+          const data = await response.json();
+          resolve(data)
+         
+          
+      } catch (err) {
+        reject(err)
+      }
+    })
+  }
+
 }
 
 
 
-
-// static Future removeBackground(image) async {
-//   FormData formdata = FormData.fromMap({
-//     "imgBase64": image,
-//   });
-//   var dio = Dio();
-
-//   var responseData = await dio.post(
-//     "https://text-stock.com/textstock-bot/remove-bg-image-web",
-//     data: formdata,
-//   );
-//   if (responseData.statusCode == 200) {
-//     var imgFile = responseData.data["output_path"];
-//     return imgFile;
-//   } else {
-//     return null;
-//   }
-// }
 export default new ApiService()

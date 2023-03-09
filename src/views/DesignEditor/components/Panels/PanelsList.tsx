@@ -57,7 +57,7 @@ const PanelListItem = ({ label, icon, activePanel, name }: any) => {
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
-        fontFamily: "Uber Move Text",
+        fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
         fontWeight: 500,
         fontSize: "0.8rem",
         userSelect: "none",
@@ -70,8 +70,9 @@ const PanelListItem = ({ label, icon, activePanel, name }: any) => {
         },
       }}
     >
+
       <Icon size={24} />
-      <div style={{ textAlign: "center" }}>{label}</div>
+      <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>{label}</div>
     </Block>
   )
 }

@@ -17,6 +17,7 @@ const Images = () => {
         const options = {
           type: "StaticImage",
           src: url,
+          name: "Images"
         }
         editor.objects.add(options)
       }

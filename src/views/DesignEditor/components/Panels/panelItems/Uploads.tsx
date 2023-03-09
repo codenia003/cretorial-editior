@@ -36,6 +36,7 @@ export default function () {
       src: base64,
       preview: preview,
       type: type,
+      name: "Images"
     }
 
     setUploads([...uploads, upload])

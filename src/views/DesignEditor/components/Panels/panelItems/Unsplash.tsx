@@ -11,9 +11,16 @@ import Spinner from "baseui/icon/spinner"
 import Search from "~/components/Icons/Search"
 import { Input } from "baseui/input"
 import { Link } from "react-router-dom"
-import Unsplash from "~/components/Icons/Unsplash"
+import Pexels from "~/components/Icons/Pexels"
+import Pixabay from "~/components/Icons/Pixabay"
+import UnsplashIcons from "~/components/Icons/Unsplash"
+
+
+import useAppContext from "~/hooks/useAppContext"
 
 const Unsplashs = () => {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const [category, setCategory] = useState<string>("")
@@ -27,6 +34,7 @@ const Unsplashs = () => {
         const options = {
           type: "StaticImage",
           src: url,
+          name: "Unsplash"
         }
         editor.objects.add(options)
       }
@@ -61,13 +69,120 @@ const Unsplashs = () => {
           padding: "1.5rem",
         }}
       >
-        <Block style={{ width: "150px", display: "inherit" }}> <Link target="_blank" style={{ color: "#413acf" }} to="https://unsplash.com/"><Unsplash size={18} /></Link><span style={{ paddingTop: "10px", marginLeft: "10px", fontWeight: "bold" }}>Unsplash</span></Block>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Unsplash");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><UnsplashIcons size={40} /></div>
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Unsplash</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Pixabay");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><div style={{ marginTop: "5px" }}><Pixabay size={32} /></div></div>
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Pixabay</div>
+          </Block>
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Pexels");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Pexels size={32} /></div>
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Pexels</div>
+          </Block>
+
         </Block>
+
+
       </Block>
-      <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
+      <Block $style={{ padding: "0rem 1.5rem 1rem" }}>
 
         <Input
           overrides={{
@@ -85,19 +200,10 @@ const Unsplashs = () => {
           startEnhancer={<Search size={16} />}
         />
 
-        {/* <Input
-          overrides={{
-            Root: {
-              style: {
-                paddingLeft: "8px",
-              },
-            },
-          }}
-          onKeyDown={getSearchData}
-          placeholder="Search"
-          size={"compact"}
-          startEnhancer={<Search size={16} />}
-        /> */}
+
+
+        <Link target="_blank" style={{ color: "#444" }} to="https://unsplash.com/"><div style={{ float: "right", display: "flex" }}><span style={{ marginTop: "10px", fontSize: "12px" }}>Powered By</span> <UnsplashIcons size={32} /></div></Link>
+
       </Block>
       <Scrollable>
         <Block padding="0 1.5rem">

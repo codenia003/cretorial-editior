@@ -9,7 +9,7 @@ const Router = () => {
 
   return (
     // <BrowserRouter basename={'/editor'}>
-    <BrowserRouter>
+    <BrowserRouter basename={'/editor'}>
       <Routes>
         <Route path="/manage" element={<Dashboard />} />
         <Route path="/" element={<DesignEditor />} />

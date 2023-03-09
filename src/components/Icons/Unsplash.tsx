@@ -1,7 +1,7 @@
 function Unsplash({ size }: { size: number }) {
   return (
 
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_29_32)">
         <path d="M32 18.6166V31.998H8V18.6166H15.5604V25.3073H24.4396V18.6166H32Z" fill="url(#paint0_linear_29_32)" />
         <path d="M15.5605 8.00195H24.4398V14.6927H15.5605V8.00195Z" fill="url(#paint1_linear_29_32)" />

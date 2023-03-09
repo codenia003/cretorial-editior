@@ -9,6 +9,9 @@ import { useEditor, useZoomRatio } from "@layerhub-io/react"
 import { StatefulTooltip } from "baseui/tooltip"
 import { Block } from "baseui/block"
 import { PLACEMENT } from "baseui/toast"
+import useAppContext from "~/hooks/useAppContext"
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "50px",
@@ -30,8 +33,10 @@ const Common = () => {
     zoomRatio: 20,
     zoomRatioTemp: 20
   })
+  const { setActiveSubMenu } = useAppContext()
   const editor = useEditor()
   const zoomRatio: number = useZoomRatio()
+  const handle = useFullScreenHandle();
 
   React.useEffect(() => {
     setOptions({ ...options, zoomRatio: Math.round(zoomRatio * 100) })
@@ -66,18 +71,26 @@ const Common = () => {
       }
     }
   }
+  const _layer = () => {
+    setActiveSubMenu("");
+    setActiveSubMenu("Layers");
+  }
+  const _fullScreen = () => {
 
+    handle.active;
+  }
   return (
     <Container>
       <div>
-        <Button kind={KIND.tertiary} size={SIZE.compact}>
+        {/* <Button kind={KIND.tertiary} size={SIZE.compact} onClick={() => _layer()}>
           <Icons.Layers size={20} />
-        </Button>
+        </Button> */}
       </div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Button kind={KIND.tertiary} size={SIZE.compact}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: "20%" }}>
+
+        {/* <Button kind={KIND.tertiary} size={SIZE.compact} onClick={handle.enter}>
           <Icons.Expand size={16} />
-        </Button>
+        </Button> */}
         <Button kind={KIND.tertiary} size={SIZE.compact} onClick={() => editor.zoom.zoomToFit()}>
           <Icons.Compress size={16} />
         </Button>
@@ -170,8 +183,8 @@ const Common = () => {
           size={SIZE.mini}
           max={zoomMax}
           min={zoomMin}
+          readOnly={true}
           onChange={(e) => handleChange("zoomRatioTemp", parseFloat(e.target.value))}
-          onKeyUp={(e) => applyZoomRatio("zoomRatio", e)}
           value={Math.round((options.zoomRatio / zoomMax) * 100)}
         />
       </div>

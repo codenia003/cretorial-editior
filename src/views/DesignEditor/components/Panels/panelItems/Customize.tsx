@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button, SIZE } from "baseui/button"
 import { HexColorPicker } from "react-colorful"
 import { StatefulPopover, PLACEMENT } from "baseui/popover"
@@ -15,6 +15,10 @@ import SwapHorizontal from "~/components/Icons/SwapHorizontal"
 import { Tabs, Tab } from "baseui/tabs"
 import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import useDesignEditorContext from "~/hooks/useDesignEditorContext"
+import useAppContext from "~/hooks/useAppContext"
+import Templates from "~/components/Icons/Templates"
+import Customized from "~/components/Icons/Customize"
+import { useStyletron } from "baseui"
 
 const colors = ["#ffffff", "#9B9B9B", "#4A4A4A", "#000000", "#A70C2C", "#DA9A15", "#F8E71D", "#47821A", "#4990E2"]
 
@@ -23,8 +27,13 @@ interface State {
 }
 
 const Customize = () => {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
+  const [activeTab, setActiveTab] = useState<string>("template")
+
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
+
 
   const [state, setState] = React.useState<State>({
     backgroundColor: "#000000",
@@ -51,17 +60,90 @@ const Customize = () => {
           padding: "1.5rem",
         }}
       >
-        <Block>Customize</Block>
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Templates");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <Templates size={18} />
+            <div style={{ textAlign: "center" }}>Templates</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Customize");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <Customized size={18} />
+            <div style={{ textAlign: "center" }}>Customize</div>
+          </Block>
         </Block>
+
+        {/* <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
+          <AngleDoubleLeft size={18} />
+        </Block> */}
       </Block>
       <Scrollable>
         <Block padding="0 1.5rem">
           <Block>
             <ResizeTemplate />
-            <Block $style={{ fontSize: "14px", textAlign: "center", paddingTop: "0.35rem" }}>1080 x 1920px</Block>
+            <Block $style={{ fontSize: "14px", textAlign: "center", paddingTop: "0.35rem" }}></Block>
           </Block>
 
           <Block paddingTop="0.5rem">

@@ -3,62 +3,43 @@ export const BASE_ITEMS = [
     id: "templates",
     name: "Templates",
   },
-  {
-    id: "customize",
-    name: "Customize",
-  },
   
   {
     id: "unsplash",
     name: "Unsplash",
   },
-  {
-    id: "pixabay",
-    name: "Pixabay",
-  },
-  {
-    id: "pexels",
-    name: "Pexels",
-  },
+  
   {
     id: "uploads",
     name: "Uploads",
   },
   
-  {
-    id: "searchslogan",
-    name: "Searchslogan",
-  },
-  {
-    id: "slogan",
-    name: "Slogan",
-  },
+  
   {
     id: "text",
     name: "Text",
   },
   {
-    id: "stickers",
-    name: "Stickers",
+    id: "elements",
+    name: "Elements",
   },
   
-  {
-    id: "logomaker",
-    name: "Logomaker",
-  },
   {
     id: "removebackground",
     name: "Removebackground",
   },
   
+  // {
+  //   id: "searchcreative",
+  //   name: "Searchcreative",
+  // },
+  
+
   {
     id: "layers",
     name: "Layers",
   },
-  {
-    id: "elements",
-    name: "Elements",
-  },
+  
 ]
 
 export const VIDEO_PANEL_ITEMS = [

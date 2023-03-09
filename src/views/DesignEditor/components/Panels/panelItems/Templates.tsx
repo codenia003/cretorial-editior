@@ -18,8 +18,15 @@ import Search from "baseui/icon/search"
 import { createAsyncThunk, createAction } from "@reduxjs/toolkit"
 import { SIZE, Spinner } from "baseui/spinner"
 import { Input } from "baseui/input"
+import Templates from "~/components/Icons/Templates"
+import Customize from "~/components/Icons/Customize"
+import useAppContext from "~/hooks/useAppContext"
 
 export default function () {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
+
+
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const { setCurrentScene, currentScene, setScenes, setCurrentDesign } = useDesignEditorContext()
@@ -28,6 +35,8 @@ export default function () {
   const [category, setCategory] = useState<string>("")
   const [isloading, setIsloading] = React.useState(true)
   const [images, setImages] = useState<IDesign[]>([])
+
+
 
   const loadGraphicTemplate = async (payload: IDesign): Promise<{ scenes: IScene[]; design: IDesign }> => {
     const scenes: IScene[] = []
@@ -70,6 +79,7 @@ export default function () {
         const options = {
           type: "StaticImage",
           src: url,
+          name: "Template"
         }
         editor.objects.add(options)
       }
@@ -107,11 +117,87 @@ export default function () {
           padding: "1.5rem 1.5rem 0",
         }}
       >
-        <Block>Templates</Block>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Templates");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <Templates size={18} />
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Templates</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Customize");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <Customize size={18} />
+            <div style={{ textAlign: "center", fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif' }}>Customize</div>
+          </Block>
         </Block>
+
+
+
+        {/* <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
+          <AngleDoubleLeft size={18} />
+        </Block> */}
       </Block>
 
       <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>

@@ -46,7 +46,7 @@ const DesignTitle = () => {
       <Block $style={{ display: "flex", position: "absolute", top: "-10px", left: "50%", width: "100%" }}>
         <Block
           $style={{
-            fontFamily: "Uber Move Text",
+            fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
             position: "absolute",
             top: "-10px",
             left: "50%",
@@ -59,7 +59,8 @@ const DesignTitle = () => {
         </Block>
       </Block>
       <Block width={`${state.width}px`} display="flex">
-        <Input
+        <div style={{ fontFamily: 'system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;' }}>Cretorial AI Design</div>
+        {/* <Input
           onChange={(e: any) => handleInputChange(e.target.value)}
           overrides={{
             Root: {
@@ -82,7 +83,7 @@ const DesignTitle = () => {
                 fontWeight: 500,
                 fontSize: "14px",
                 width: `${state.width}px`,
-                fontFamily: "Uber Move Text",
+                fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
                 backgroundColor: "transparent",
                 color: "#ffffff",
                 paddingRight: 0,
@@ -91,10 +92,10 @@ const DesignTitle = () => {
           }}
           value={state.name}
           ref={inputTitleRef}
-        />
+        /> */}
       </Block>
 
-      <StatefulTooltip
+      {/* <StatefulTooltip
         showArrow={true}
         overrides={{
           Inner: {
@@ -115,7 +116,7 @@ const DesignTitle = () => {
         >
           <CloudCheck size={24} />
         </Block>
-      </StatefulTooltip>
+      </StatefulTooltip> */}
     </Block>
   )
 }

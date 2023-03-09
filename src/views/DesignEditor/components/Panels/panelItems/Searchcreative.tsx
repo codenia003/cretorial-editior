@@ -36,7 +36,7 @@ import Slogan from "~/components/Icons/Slogan"
 import useAppContext from "~/hooks/useAppContext"
 import { useStyletron } from "baseui"
 
-const Searchslogan = () => {
+const Searchcreative = () => {
   const { setActiveSubMenu } = useAppContext()
   const [css, theme] = useStyletron()
   const editor = useEditor()
@@ -261,302 +261,14 @@ const Searchslogan = () => {
 
       {
         isFilter ? (<>
-          <div>
 
-
-
-
-
-            <Block
-              $style={{
-                display: "flex",
-                alignItems: "center",
-                fontWeight: 500,
-                justifyContent: "space-between",
-                padding: "1.5rem 1.5rem 0",
-              }}
-            >
-              <Block>Filters</Block>
-
-              <Block style={{ display: "flex" }}>
-                {category != "" ? (<div style={{ cursor: "pointer", display: "flex", padding: "5px" }} onClick={() => setIsFilter(false)} ><Delete size={24} /></div>) : (<></>)}
-                <div style={{ cursor: "pointer", display: "flex", padding: "5px" }} onClick={() => setIsSidebarOpen(false)} ><AngleDoubleLeft size={18} /></div>
-              </Block>
-            </Block>
-
-
-
-            <Tabs>
-              <TabList>
-                <Tab>
-                  <p>Tonality</p>
-                </Tab>
-                <Tab>
-                  <p>Category</p>
-                </Tab>
-                <Tab>
-                  <p>Words</p>
-                </Tab>
-
-              </TabList>
-
-              <TabPanel>
-                <div className="panel-content" style={{
-                  textAlign: "left",
-                  paddingLeft: "16px",
-                  maxHeight: "400px",
-                  overflowY: "scroll"
-                }}>
-
-                  {tonality.map((item, index) => (
-                    <div className="form-check">
-                      <input
-                        checked={
-                          tonalityChecked.includes(item["name"])
-                            ? true
-                            : false
-                        }
-                        onClick={handleTonalityCheck}
-                        type="checkbox"
-                        className="form-check-input"
-                        value={item["name"]}
-                        id={`task-${item["name"]}`}
-                      />{" "}
-                      {item["name"]}
-                    </div>
-                  ))}
-
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div className="panel-content" style={{
-                  textAlign: "left",
-                  paddingLeft: "16px",
-                  maxHeight: "400px",
-                  overflowY: "scroll"
-                }}>
-
-
-                  {filterCategory.map((item, index) => (
-                    <div className="form-check">
-                      <input
-                        checked={
-                          categoryChecked.includes(
-                            item["categoryName"]
-                          )
-                            ? true
-                            : false
-                        }
-                        onClick={handleCategoryCheck}
-                        type="checkbox"
-                        className="form-check-input"
-                        value={item["categoryName"]}
-                        id={`task-${item["categoryName"]}`}
-                      />
-                      {item["categoryName"]}
-                    </div>
-                  ))}
-                </div>
-              </TabPanel>
-              <TabPanel>
-                <div className="panel-content" style={{
-                  textAlign: "left",
-                  paddingLeft: "16px"
-                }}>
-
-                  {words.map((item, index) => (
-                    <div className="form-check">
-                      <input
-                        checked={
-                          wordChecked.includes(item["word_id"])
-                            ? true
-                            : false
-                        }
-                        onClick={handleWordCheck}
-                        type="checkbox"
-                        className="form-check-input"
-                        value={item["word_id"]}
-                        id={`task-${item["word_name"]}`}
-                      />
-                      {item["word_name"]}
-                    </div>
-                  ))}
-                </div>
-              </TabPanel>
-
-            </Tabs>
-
-            <Block
-              $style={{
-                display: "flex",
-                alignItems: "center",
-                fontWeight: 500,
-                justifyContent: "space-between",
-                padding: "16px",
-              }}
-            >
-              <Button style={{ width: "35%", height: "30px" }} onClick={() => apply()}>Apply</Button>
-
-
-              <Button style={{ width: "35%", height: "30px" }} onClick={() => clear()}>Clear</Button>
-
-
-            </Block>
-
-          </div>
         </>) : (<Block flex={1} flexDirection="column" display={"flex"}>
 
 
-          <Block
-            $style={{
-              display: "flex",
-              alignItems: "center",
-              fontWeight: 500,
-              justifyContent: "space-between",
-              padding: "1.5rem",
-            }}
-          >
-
-
-            <Block $style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingY: "2rem",
-            }}>
-
-
-              <Block
-                id="EditorPanelList"
-                onClick={() => {
-                  setActiveSubMenu("Text");
-                }}
-                $style={{
-                  width: "80px",
-                  height: "80px",
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                  margin: "5px",
-                  backgroundColor: theme.colors.white,
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "0.8rem",
-                  userSelect: "none",
-                  transition: "all 0.5s",
-                  gap: "0.1rem",
-                  ":hover": {
-                    cursor: "pointer",
-                    backgroundColor: theme.colors.primary100,
-                    transition: "all 1s",
-                  },
-                }}
-              >
-                <div style={{ height: "50px" }}><Text size={40} /></div>
-                <div style={{ textAlign: "center" }}>Text</div>
-              </Block>
-
-
-              <Block
-                id="EditorPanelList"
-                onClick={() => {
-                  setActiveSubMenu("Searchslogan");
-                }}
-                $style={{
-                  width: "80px",
-                  height: "80px",
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                  margin: "5px",
-                  backgroundColor: theme.colors.primary100,
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "0.8rem",
-                  userSelect: "none",
-                  transition: "all 0.5s",
-                  gap: "0.1rem",
-                  ":hover": {
-                    cursor: "pointer",
-                    backgroundColor: theme.colors.primary100,
-                    transition: "all 1s",
-                  },
-                }}
-              >
-                <div style={{ height: "50px" }}><div style={{ marginTop: "5px" }}><Searchslogans size={32} /></div></div>
-                <div style={{ textAlign: "center" }}>Search</div>
-              </Block>
-
-              <Block
-                id="EditorPanelList"
-                onClick={() => {
-                  setActiveSubMenu("Slogan");
-                }}
-                $style={{
-                  width: "80px",
-                  height: "80px",
-                  border: "1px solid #ddd",
-                  borderRadius: "10px",
-                  margin: "5px",
-                  backgroundColor: theme.colors.white,
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "0.8rem",
-                  userSelect: "none",
-                  transition: "all 0.5s",
-                  gap: "0.1rem",
-                  ":hover": {
-                    cursor: "pointer",
-                    backgroundColor: theme.colors.primary100,
-                    transition: "all 1s",
-                  },
-                }}
-              >
-                <div style={{ height: "50px" }}><Slogans size={32} /></div>
-                <div style={{ textAlign: "center" }}>Make Slogans</div>
-              </Block>
-
-            </Block>
-
-
-          </Block>
-
-
-          {category != "" && searchResults.length == 0 ? (<Block
-            $style={{
-              display: "flex",
-              alignItems: "center",
-              fontWeight: 500,
-              justifyContent: "space-between",
-              padding: "1.5rem 1.5rem 0",
-            }}
-          >
-            <Block>Keyword Match</Block>
-            <Block style={{ display: "flex" }}>
-
-              <label className="switch">
-                <input type="checkbox" value={isChecked ? "true" : "false"} onChange={() => switchFilter()} />
-                <div className="slider"></div>
-              </label>
-
-              <div style={{ cursor: "pointer", display: "flex", padding: "0px 5px" }} onClick={() => setIsFilter(true)} ><Filter size={24} /></div>
-
-            </Block>
-          </Block>) : (<></>)}
 
 
 
-
-          <Block $style={{ padding: "0rem 1.5rem 1rem" }}>
+          <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
 
             <Input
               overrides={{
@@ -581,13 +293,13 @@ const Searchslogan = () => {
                 <div onClick={makeSearch}>{item}</div>
               </Block>;
             })}
-          </Block> : (<img src="https://cretorial.ai/cretorial/images/search_text.png" style={{ paddingLeft: "10%", width: "220px" }} />)
+          </Block> : (<></>)
           }
 
 
 
           {searchResults.length == 0 ? <> <Scrollable>
-            <Block padding={"0 1.5rem"}>
+            <Block padding={"1.5rem 1.5rem"}>
 
               <Block
                 $style={{
@@ -688,5 +400,5 @@ const Searchslogan = () => {
 }
 
 
-export default Searchslogan
+export default Searchcreative
 

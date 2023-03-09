@@ -20,6 +20,7 @@ const Layers = () => {
 
   React.useEffect(() => {
     if (objects) {
+      console.log(JSON.stringify(objects));
       setLayerObjects(objects)
     }
   }, [objects])
@@ -27,6 +28,7 @@ const Layers = () => {
   React.useEffect(() => {
     let watcher = async () => {
       if (objects) {
+
         setLayerObjects([...objects])
       }
     }
@@ -59,6 +61,7 @@ const Layers = () => {
       </Block>
       <Scrollable>
         <Block padding="0 1.5rem">
+
           {layerObjects.map((object) => (
             <Block
               $style={{
@@ -73,7 +76,9 @@ const Layers = () => {
               key={object.id}
             >
               <Block $style={{ cursor: "pointer" }} onClick={() => editor.objects.select(object.id)}>
+
                 {object.name}
+
               </Block>
               <Block $style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                 {object.locked ? (

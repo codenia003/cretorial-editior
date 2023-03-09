@@ -8,7 +8,7 @@ import TextColor from "~/components/Icons/TextColor"
 import Bold from "~/components/Icons/Bold"
 import Italic from "~/components/Icons/Italic"
 import Underline from "~/components/Icons/Underline"
-import TextAlignCenter from "~/components/Icons/TextAlignCenter" 
+import TextAlignCenter from "~/components/Icons/TextAlignCenter"
 import { Button, SIZE, KIND } from "baseui/button"
 import { StatefulTooltip, PLACEMENT } from "baseui/tooltip"
 import LetterCase from "~/components/Icons/LetterCase"
@@ -370,7 +370,7 @@ function TextFontSize() {
                 backgroundColor: "#ffffff",
                 paddingRight: 0,
                 fontWeight: 500,
-                fontFamily: "Uber Move Text",
+                fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
                 fontSize: "14px",
               },
             },
@@ -502,7 +502,7 @@ function TextSpacing() {
                     InputContainer: {},
                   }}
                   size={SIZE.mini}
-                  onChange={() => {}}
+                  onChange={() => { }}
                   value={Math.round(state.lineHeight)}
                 />
               </Block>
@@ -564,7 +564,7 @@ function TextSpacing() {
                     InputContainer: {},
                   }}
                   size={SIZE.mini}
-                  onChange={() => {}}
+                  onChange={() => { }}
                   value={Math.round(state.charSpacing)}
                 />
               </Block>

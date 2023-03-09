@@ -17,9 +17,12 @@ import useSetIsSidebarOpen from "~/hooks/useSetIsSidebarOpen"
 import { useStyletron } from "baseui"
 import "../../../../../styles/styles.css";
 import copy_text from '../../../../../images/copy.svg';
-
+import Text from "~/components/Icons/Text"
 import { Alert } from 'baseui/icon';
 import { Button } from 'baseui/button';
+import Searchslogan from "~/components/Icons/Searchslogan"
+import Slogans from "~/components/Icons/Slogan"
+
 import {
   Card,
   StyledBody,
@@ -28,6 +31,7 @@ import {
 import { FontItem } from "~/interfaces/common";
 import { loadFonts } from "~/utils/fonts";
 import { nanoid } from "nanoid";
+import useAppContext from "~/hooks/useAppContext";
 
 
 function Negative() {
@@ -48,6 +52,8 @@ function Negative() {
 }
 
 const Slogan = () => {
+  const { setActiveSubMenu } = useAppContext()
+  const [css, theme] = useStyletron()
   const editor = useEditor()
   const [hasMore, setHasMore] = React.useState(true)
   const [images, setImages] = useState([])
@@ -137,6 +143,7 @@ const Slogan = () => {
         fontURL: font.url,
         fill: "#333333",
         metadata: {},
+        name: text
       }
       editor.objects.add(options)
     }
@@ -150,15 +157,121 @@ const Slogan = () => {
           alignItems: "center",
           fontWeight: 500,
           justifyContent: "space-between",
-          padding: "1.5rem 1.5rem 0",
-
+          padding: "1.5rem",
         }}
       >
-        <Block>Slogan</Block>
 
-        <Block onClick={() => setIsSidebarOpen(false)} $style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
+
+        <Block $style={{
+          display: "flex",
+          justifyContent: "center",
+          paddingY: "2rem",
+        }}>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Text");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Text size={40} /></div>
+            <div style={{ textAlign: "center" }}>Text</div>
+          </Block>
+
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Searchslogan");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.white,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.white,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><div style={{ marginTop: "5px" }}><Searchslogan size={32} /></div></div>
+            <div style={{ textAlign: "center" }}>Search</div>
+          </Block>
+
+          <Block
+            id="EditorPanelList"
+            onClick={() => {
+              setActiveSubMenu("Slogan");
+            }}
+            $style={{
+              width: "80px",
+              height: "80px",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              margin: "5px",
+              backgroundColor: theme.colors.primary100,
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "0.8rem",
+              userSelect: "none",
+              transition: "all 0.5s",
+              gap: "0.1rem",
+              ":hover": {
+                cursor: "pointer",
+                backgroundColor: theme.colors.primary100,
+                transition: "all 1s",
+              },
+            }}
+          >
+            <div style={{ height: "50px" }}><Slogans size={32} /></div>
+            <div style={{ textAlign: "center" }}>Make Slogans</div>
+          </Block>
+
         </Block>
+
+
       </Block>
 
       <Block $style={{ padding: "1.5rem 1.5rem 1rem" }}>
